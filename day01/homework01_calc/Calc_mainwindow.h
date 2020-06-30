@@ -15,6 +15,12 @@ public:
     explicit Calc_MainWindow(QWidget *parent = nullptr);
     ~Calc_MainWindow();
 
+signals:
+    void loginbtnenabled();
+
+public slots:
+    void setLoginBtnEnabled();
+
 private:
     Ui::Calc_MainWindow *ui;
 };

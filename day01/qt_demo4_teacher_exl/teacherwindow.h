@@ -2,6 +2,9 @@
 #define TEACHERWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include <QPushButton>
+#include <QLineEdit>
 #include "teacher.h"
 namespace Ui {
 class TeacherWindow;
