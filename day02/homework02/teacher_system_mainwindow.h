@@ -15,6 +15,9 @@ public:
     explicit teacher_system_MainWindow(QWidget *parent = nullptr);
     ~teacher_system_MainWindow();
 
+public slots:
+    void show_show_ui();
+
 private:
     Ui::teacher_system_MainWindow *ui;
 };

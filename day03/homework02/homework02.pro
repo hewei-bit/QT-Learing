@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-06-30T19:31:39
+# Project created by QtCreator 2020-07-02T21:00:12
 #
 #-------------------------------------------------
 
@@ -26,26 +26,15 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        set_mainwindow.cpp \
-        show_mainwindow.cpp \
-        teacher.cpp \
-        teacher_system_mainwindow.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        set_mainwindow.h \
-        show_mainwindow.h \
-        teacher.h \
-        teacher_system_mainwindow.h
+        mainwindow.h
 
 FORMS += \
-        set_mainwindow.ui \
-        show_mainwindow.ui \
-        teacher_system_mainwindow.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    photo.qrc

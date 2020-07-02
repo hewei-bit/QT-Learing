@@ -1,86 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>teacher_system_MainWindow</class>
- <widget class="QMainWindow" name="teacher_system_MainWindow">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>934</width>
-    <height>590</height>
+    <width>730</width>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>teacher_system_MainWindow</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">background-image: url(:/new/prefix1/timg.jpg);</string>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="student_pushButton">
+   <widget class="QLabel" name="list_label">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>200</y>
-      <width>201</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/new/prefix1/student.jpg);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="teacher_pushButton">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>200</y>
-      <width>201</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/new/prefix1/teacher.jpg);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="title_label">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
+      <x>250</x>
       <y>70</y>
-      <width>521</width>
-      <height>81</height>
+      <width>211</width>
+      <height>61</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>24</pointsize>
-     </font>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
     </property>
     <property name="text">
-     <string>教 师 管 理 系 统</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <string/>
     </property>
    </widget>
-   <zorder>teacher_pushButton</zorder>
-   <zorder>title_label</zorder>
-   <zorder>student_pushButton</zorder>
+   <widget class="QLabel" name="show_label_2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>150</y>
+      <width>211</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>270</y>
+      <width>121</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopBtn">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>270</y>
+      <width>121</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>结束</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>934</width>
+     <width>730</width>
      <height>26</height>
     </rect>
    </property>
