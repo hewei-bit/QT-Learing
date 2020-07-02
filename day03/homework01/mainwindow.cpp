@@ -78,11 +78,11 @@ void MainWindow::on_blueSlider_3_sliderMoved(int position)
     ui->label->setStyleSheet(color);
 }
 
-
+static int num = 0;
 
 void MainWindow::on_setcolor_Btn_clicked()
 {
-    static int num = 0;
+
     num++;
     qDebug() << num;
     num = num % 3;
@@ -109,19 +109,20 @@ void MainWindow::on_setcolor_Btn_clicked()
 void MainWindow::on_paltte_1_Btn_clicked()
 {
     QPalette pal = ui->paltte_1_Btn->palette();
-
+    num = 0;
     setcolor(pal);
 }
 
 void MainWindow::on_paltte_2_Btn_clicked()
 {
     QPalette pal = ui->paltte_2_Btn->palette();
-
+    num =1;
     setcolor(pal);
 }
 
 void MainWindow::on_paltte_3_Btn_clicked()
 {
     QPalette pal = ui->paltte_3_Btn->palette();
+    num =2;
     setcolor(pal);
 }
