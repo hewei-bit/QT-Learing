@@ -14,6 +14,10 @@ class file_information : public QMainWindow
 
 public:
     explicit file_information(QWidget *parent = nullptr);
+    void setDir(QString dirName);
+    void setFile(QString fileName, qint64 fileSize);
+
+
     ~file_information();
 signals:
     void send_file_info(QFileInfo fileinfo);
