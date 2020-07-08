@@ -75,3 +75,10 @@ void MainWindow::readData()
     ui->IP_textBrowser->setText(ip);
     qDebug() << ip << string;
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    QMessageBox::warning(this,"警告","与服务器断开连接",QMessageBox::Ok);
+    socket.close();
+    socket.deleteLater();
+}

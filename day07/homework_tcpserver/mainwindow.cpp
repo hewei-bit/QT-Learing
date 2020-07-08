@@ -79,3 +79,13 @@ void MainWindow::on_clear_Btn_clicked()
 {
     ui->message_message_output->clear();
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(socket != nullptr)
+    {
+        ui->message_message_output->append("client logout!");
+        socket->close();
+        socket->deleteLater();
+    }
+}

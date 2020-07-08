@@ -7,6 +7,7 @@
 #include <QHostAddress>
 #include <QTextCodec>
 #include <QDateTime>
+#include <QMessageBox>
 namespace Ui {
 class MainWindow;
 }
@@ -27,6 +28,8 @@ private slots:
     void on_clear_Btn_clicked();
 
     void readData();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
