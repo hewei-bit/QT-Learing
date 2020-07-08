@@ -6,70 +6,48 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>342</height>
+    <width>653</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="linkBtn">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>480</x>
       <y>30</y>
-      <width>421</width>
-      <height>81</height>
+      <width>71</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>26</pointsize>
-     </font>
-    </property>
     <property name="text">
-     <string/>
+     <string>连接</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QPushButton" name="sendBtn">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>140</y>
-      <width>201</width>
-      <height>61</height>
+      <x>480</x>
+      <y>90</y>
+      <width>71</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>发送</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>220</y>
-      <width>93</width>
-      <height>28</height>
+      <x>40</x>
+      <y>90</y>
+      <width>431</width>
+      <height>41</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>start</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>220</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>stop</string>
     </property>
    </widget>
   </widget>
@@ -78,8 +56,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>589</width>
-     <height>26</height>
+     <width>653</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>

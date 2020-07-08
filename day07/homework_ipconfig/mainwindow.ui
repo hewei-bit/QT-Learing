@@ -6,70 +6,71 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>342</height>
+    <width>780</width>
+    <height>583</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="input_label">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>60</x>
       <y>30</y>
-      <width>421</width>
-      <height>81</height>
+      <width>101</width>
+      <height>16</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>26</pointsize>
-     </font>
-    </property>
     <property name="text">
-     <string/>
+     <string>请输入命令：</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>140</y>
-      <width>201</width>
-      <height>61</height>
+      <x>60</x>
+      <y>60</y>
+      <width>511</width>
+      <height>41</height>
      </rect>
-    </property>
-    <property name="text">
-     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>220</y>
-      <width>93</width>
-      <height>28</height>
+      <x>600</x>
+      <y>60</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>start</string>
+     <string>运行</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QLabel" name="show_label">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>220</y>
-      <width>93</width>
-      <height>28</height>
+      <x>60</x>
+      <y>120</y>
+      <width>121</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>stop</string>
+     <string>运行结果如下：</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="show_textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>160</y>
+      <width>641</width>
+      <height>341</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -78,7 +79,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>589</width>
+     <width>780</width>
      <height>26</height>
     </rect>
    </property>
