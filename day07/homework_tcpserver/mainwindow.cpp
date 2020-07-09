@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("TCP服务器");
+     connect(&server,&QTcpServer::newConnection,this,&MainWindow::newClient);
 }
 
 MainWindow::~MainWindow()
@@ -26,33 +27,33 @@ void MainWindow::newClient()
 }
 void MainWindow::readData()
 {
-    QByteArray array = socket->readAll();    //接收消息
-    qDebug() << "msg = " << array;
+    //首先要捕获信号的发送对象 ，找到到底是哪一个客户端发给信息到服务端
+    QTcpSocket* msocket = dynamic_cast<QTcpSocket*>(sender());
+    QByteArray msg =  msocket->readAll(); //接收消息
+    qDebug() << "msg = " << msg;
+    //获取时间   获得IP  获得端口号
+    QDateTime datetime = QDateTime::currentDateTime();
+    QString ip = socket->peerAddress().toString();
+    int port = socket->peerPort();
     //有中文字符，转换编码方式
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-    QString string = codec->toUnicode(array);
-    qDebug() << "msg = " << string;
-    //获取时间
-    QDateTime datetime = QDateTime::currentDateTime();
-    //读取消息
-    QHostAddress clientaddr = socket->peerAddress(); //获得IP
-    int port = socket->peerPort();   //获得端口号
-    QString sendMessage = tr("recv from :") + clientaddr.toString() + tr(" : ") \
+    QString string = codec->toUnicode(msg);
+    //输出至聊天窗口
+    ip = ip.remove(0,7);
+    QString sendMessage = tr("recv from :") + ip + tr(" : ") \
                             + QString::number(port) + tr("   ") + datetime.toString("yyyy-M-dd hh:mm:ss") + tr("\n");
     sendMessage += string;
-    //将接收到的内容加入到kuang
     ui->message_message_output->append(sendMessage);
-
-    ui->IP_textBrowser->setText(clientaddr.toString());
-
+    //添加ip
+    ui->IP_textBrowser->append(ip);
 }
 void MainWindow::on_start_Btn_clicked()
 {
-    int port = ui->port_lineEdit->text().toInt();
+    quint16 port = ui->port_lineEdit->text().toUShort();
     //监听客户端
     server.listen(QHostAddress::Any,port);
-    //建立连接
-    connect(&server,&QTcpServer::newConnection,this,&MainWindow::newClient);
+
+
     qDebug() << "server start";
 }
 

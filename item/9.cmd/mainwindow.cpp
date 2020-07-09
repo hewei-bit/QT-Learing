@@ -20,7 +20,7 @@ void MainWindow::on_pushButton_clicked()
     cmdprocess->setProgram("cmd");
     //获取键入命令行的命令
     QStringList argument;
-    argument<<"/c"<<ui->lineEdit->text();
+    argument<<"/c"<<ui->cmdLineEdit->text();
     cmdprocess->setArguments(argument);
     //启动cmd
     cmdprocess->start();

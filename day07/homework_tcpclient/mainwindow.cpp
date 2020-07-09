@@ -25,7 +25,7 @@ void MainWindow::on_connect_Btn_clicked()
 {
     //[1] 客户端向服务端发起请求
    QString IP =  ui->IP_lineEdit->text();
-   int port = ui->port_lineEdit->text().toInt();
+   quint16 port = ui->port_lineEdit->text().toUShort();
    socket.connectToHost(IP,port);
 
    this->isconnetion = true;
@@ -35,11 +35,10 @@ void MainWindow::on_connect_Btn_clicked()
 
 void MainWindow::on_send_Btn_clicked()
 {
+    //获取
     QString data = ui->message_input->text();
-    qDebug()<<data;
-    QString data_new = "client:"+data;
-    socket.write(data_new.toUtf8());
-    ui->message_message_output->append(data_new);   //将要发送的内容显示在listwidget
+    socket.write(data.toUtf8());
+    ui->message_message_output->append(data);   //将要发送的内容显示在listwidget
     ui->message_input->clear();
 }
 
@@ -50,30 +49,20 @@ void MainWindow::on_clear_Btn_clicked()
 
 void MainWindow::readData()
 {
-
     QByteArray msg = socket.readAll();
-    qDebug() << "msg = " << msg;
     //有中文字符，转换编码方式
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QString string = codec->toUnicode(msg);
-    qDebug() << "msg = " << string;
-    //获取时间
+    //获取时间 获得端口号  获得IP
     QDateTime datetime = QDateTime::currentDateTime();
-    //读取消息
-    QHostAddress clientaddr = socket.peerAddress(); //获得IP
-    int port = socket.peerPort();   //获得端口号
-    QString sendMessage = tr("recv from :") + clientaddr.toString() + tr(" : ") \
+    QString ip = socket.peerAddress().toString();
+    int port = socket.peerPort();
+    //将接收到的内容加入到kuang
+    QString sendMessage = tr("recv from :") + ip + tr(" : ") \
                             + QString::number(port) + tr("   ") + datetime.toString("yyyy-M-dd hh:mm:ss") + tr("\n");
     sendMessage += string;
-    //将接收到的内容加入到kuang
     ui->message_message_output->append(sendMessage);
-
-    //判断到底是哪个发送者发来的消息
-    QTcpSocket* msocket = dynamic_cast<QTcpSocket *>(sender());
-    //获取对方信息
-    QString ip = msocket->peerAddress().toString();
-    ui->IP_textBrowser->setText(ip);
-    qDebug() << ip << string;
+    ui->IP_textBrowser->append(ip);
 }
 
 void MainWindow::on_pushButton_clicked()
