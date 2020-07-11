@@ -30,8 +30,13 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    QTcpSocket msocket;
 
+    QFile file;
+    QString fileName;
 
+    qint64 filesize;
+    qint64 sendsize;
 
 
 

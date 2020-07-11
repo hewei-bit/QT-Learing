@@ -35,7 +35,8 @@ void MainWindow::on_requestBtn_clicked()
 {
     qDebug() << QSslSocket::supportsSsl() << QSslSocket::sslLibraryBuildVersionString() << QSslSocket::sslLibraryVersionString();
     //QUrl url("http://fanyi.youdao.com/");
-    QUrl url("https://pic.sogou.com/pics/home/detail_single.jsp?query=pexels&category=copyright_pc&mode=1#did=4&findex=undefined&groupId=null&query=");
+    QUrl url("https://pic.sogou.com/pics/home/detail_single.jsp"
+             "?query=pexels&category=copyright_pc&mode=1#did=4&findex=undefined&groupId=null&query=");
 
     QNetworkRequest request(url);
     manager->get(request);
