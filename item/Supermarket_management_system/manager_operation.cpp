@@ -1,11 +1,15 @@
 #include "manager_operation.h"
 #include "ui_manager_operation.h"
 
+#include "readwritejson.h"
+
+
 manager_operation::manager_operation(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::manager_operation)
 {
     ui->setupUi(this);
+
 }
 
 manager_operation::~manager_operation()

@@ -1,14 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-07-08T19:09:41
+# Project created by QtCreator 2020-07-11T10:17:38
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = homework_tcpclient
+TARGET = Supermarket_management_system
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,16 +25,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        goods.cpp \
         main.cpp \
-        mainwindow.cpp
+        login.cpp \
+        manager_operation.cpp \
+        new_staff.cpp \
+        readwritejson.cpp \
+        staff_operation.cpp
 
 HEADERS += \
-        mainwindow.h
+        goods.h \
+        login.h \
+        manager_operation.h \
+        new_staff.h \
+        readwritejson.h \
+        staff_operation.h
 
 FORMS += \
-        mainwindow.ui
+        login.ui \
+        manager_operation.ui \
+        new_staff.ui \
+        staff_operation.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    json.qrc

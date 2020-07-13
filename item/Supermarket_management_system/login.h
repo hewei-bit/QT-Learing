@@ -1,6 +1,10 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
+
+#include <iostream>
+#include <list>
+
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QtDebug>
@@ -23,6 +27,7 @@
 #include <QDir>
 
 
+
 namespace Ui {
 class login;
 }
@@ -34,12 +39,17 @@ class login : public QMainWindow
 public:
     explicit login(QWidget *parent = nullptr);
     ~login();
+
+
     void addJson(QString account,QString password);
     int isAccountInJson(QString account);
     bool isPasswordCorrect(QString account,QString password);
     void deleteJson(QString account);
-    QByteArray open_json();
-    void JsonToFile(QJsonObject object);
+
+    QByteArray open_json(QString filename);
+    void JsonToFile(QJsonObject object,QString filename);
+
+
 private slots:
     void on_mannager_Btn_clicked();
 
@@ -48,11 +58,12 @@ private slots:
     void on_exit_btn_clicked();
 
 
-
 private:
     Ui::login *ui;
     QString account;
     QString password;
+    QString accountfilename = "./resources/account.json";
+    QString goodsfilename = "./resources/goods.json";
 };
 
 #endif // LOGIN_H

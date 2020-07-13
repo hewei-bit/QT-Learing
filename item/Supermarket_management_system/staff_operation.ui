@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>781</width>
-    <height>606</height>
+    <width>1121</width>
+    <height>722</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1081</width>
+      <width>1121</width>
       <height>731</height>
      </rect>
     </property>
@@ -37,8 +37,8 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>440</y>
-        <width>731</width>
+        <y>580</y>
+        <width>981</width>
         <height>61</height>
        </rect>
       </property>
@@ -97,50 +97,144 @@
        </item>
       </layout>
      </widget>
-     <widget class="QTableView" name="goods_tableView">
+     <widget class="QTableView" name="pay_tableView">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>30</y>
-        <width>461</width>
-        <height>381</height>
+        <y>20</y>
+        <width>781</width>
+        <height>531</height>
        </rect>
       </property>
      </widget>
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>30</y>
-        <width>241</width>
-        <height>371</height>
+        <x>833</x>
+        <y>20</y>
+        <width>254</width>
+        <height>593</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>种类</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="goods_type_comboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>黑体</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <property name="currentText">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>品名</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_2"/>
+        <widget class="QComboBox" name="goods_name_comboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>黑体</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>库存数量</string>
+          <string>商品ID</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="goods_num_textBrowser">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>20</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>商品售价</string>
          </property>
         </widget>
        </item>
@@ -148,19 +242,47 @@
         <widget class="QTextBrowser" name="textBrowser"/>
        </item>
        <item>
+        <widget class="QLabel" name="label_6">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>商品库存</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="textBrowser_2"/>
+       </item>
+       <item>
         <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>被购数量</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox">
+        <widget class="QSpinBox" name="goods_num_spinBox">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
          </property>
          <property name="maximum">
           <number>999</number>
@@ -169,6 +291,18 @@
        </item>
        <item>
         <widget class="QPushButton" name="add_goods_Btn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>AcadEref</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>加入购物车</string>
          </property>
@@ -181,27 +315,27 @@
      <attribute name="title">
       <string>货物查询</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>691</width>
-        <height>391</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="return_Btn">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>460</y>
+        <x>810</x>
+        <y>590</y>
         <width>181</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
        <string> 返回</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="goods_tableView">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>20</y>
+        <width>1041</width>
+        <height>531</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -212,7 +346,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>781</width>
+     <width>1121</width>
      <height>26</height>
     </rect>
    </property>
