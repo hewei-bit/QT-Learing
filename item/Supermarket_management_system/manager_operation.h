@@ -2,6 +2,12 @@
 #define MANAGER_OPERATION_H
 
 #include <QMainWindow>
+#include <QTableWidgetItem>
+#include <QStandardItemModel>
+#include <QWidget>
+
+#include "goods.h"
+
 
 namespace Ui {
 class manager_operation;

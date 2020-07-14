@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTableWidgetItem>
 #include <QStandardItemModel>
-
+#include <QWidget>
 
 #include "goods.h"
 
@@ -24,15 +24,15 @@ class staff_operation : public QMainWindow
 public:
     explicit staff_operation(QWidget *parent = nullptr);
     ~staff_operation();
+    //显示库存
+    void showStock(QList<goods> &glist);
+    //设置购物车标题
+    void showShoppingcar(QList<goods> &glist);
 
-    void showStock(QString filename);
-
-    void showShoppingcar();
 
 private slots:
-    void on_tableWidget_itemClicked(QTableWidgetItem *item);
 
-    void on_wind_up_Btn_clicked();
+
 
     void on_clean_Btn_clicked();
 
@@ -48,9 +48,18 @@ private slots:
 
 
 
+    void on_buy_Btn_clicked();
+
+    void on_add_goods_Btn_clicked();
+
+    void on_pay_tableView_clicked(const QModelIndex &index);
+
 private:
     Ui::staff_operation *ui;
     QString filename = "./resources/goods.json";
+    static int bill_serial;
+
+
 };
 
 #endif // STAFF_OPERATION_H

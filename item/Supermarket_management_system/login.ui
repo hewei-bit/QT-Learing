@@ -6,15 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>710</width>
-    <height>452</height>
+    <width>662</width>
+    <height>442</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>超市管理系统</string>
+   <string>超市管理系统登录</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/pic/timg.jpg);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLineEdit" name="account_lineEdit">
@@ -142,8 +148,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>710</width>
-     <height>26</height>
+     <width>662</width>
+     <height>33</height>
     </rect>
    </property>
   </widget>

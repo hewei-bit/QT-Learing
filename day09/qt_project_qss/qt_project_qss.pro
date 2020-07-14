@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-07-11T10:17:38
+# Project created by QtCreator 2020-07-14T14:21:41
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Supermarket_management_system
+TARGET = qt_project_qss
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,33 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        bill.cpp \
-        goods.cpp \
         main.cpp \
-        login.cpp \
-        manager_operation.cpp \
-        new_goods.cpp \
-        new_staff.cpp \
-        readwritejson.cpp \
-        staff_operation.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        bill.h \
-        goods.h \
-        login.h \
-        manager_operation.h \
-        new_goods.h \
-        new_staff.h \
-        readwritejson.h \
-        staff_operation.h
+        mainwindow.h
 
 FORMS += \
-        bill.ui \
-        login.ui \
-        manager_operation.ui \
-        new_goods.ui \
-        new_staff.ui \
-        staff_operation.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -59,6 +40,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    json.qrc
-
-DISTFILES +=
+    res.qrc

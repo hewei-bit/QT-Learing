@@ -36,6 +36,20 @@ public:
 
     QString getUnit() const;
 
+    void setID(int value);
+
+    void setSpecies(const QString &value);
+
+    void setName(const QString &value);
+
+    void setQuantity(int value);
+
+    void setCost(int value);
+
+    void setPrice(int value);
+
+    void setUnit(const QString &value);
+
 private:
     int ID;
     QString species;

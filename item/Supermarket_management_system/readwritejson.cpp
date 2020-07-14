@@ -143,9 +143,6 @@ void readWriteJson::goodsJsonTolist(QString filename,QList<goods>& glist)
         int cost =  anyone_object.value("cost").toInt();
         int price =  anyone_object.value("price").toInt();
         QString unit = anyone_object.value("unit").toString();
-        qDebug() << quantity;
-        qDebug() << cost;
-        qDebug() << price;
         //构造商品
         goods anyone(ID,species,name,quantity,cost,price,unit);
         //将商品加入链表

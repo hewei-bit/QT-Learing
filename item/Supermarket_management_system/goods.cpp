@@ -78,3 +78,38 @@ QString goods::getUnit() const
 {
     return unit;
 }
+
+void goods::setID(int value)
+{
+    ID = value;
+}
+
+void goods::setSpecies(const QString &value)
+{
+    species = value;
+}
+
+void goods::setName(const QString &value)
+{
+    name = value;
+}
+
+void goods::setQuantity(int value)
+{
+    quantity = value;
+}
+
+void goods::setCost(int value)
+{
+    cost = value;
+}
+
+void goods::setPrice(int value)
+{
+    price = value;
+}
+
+void goods::setUnit(const QString &value)
+{
+    unit = value;
+}
