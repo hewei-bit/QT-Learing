@@ -6,11 +6,6 @@ Staff::Staff()
 
 }
 
-
-
-
-
-
 //遍历员工账号，未找到返回0，已找到返回1
 int Staff::isAccountInJson(QString filename, QString account)
 {

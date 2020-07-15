@@ -9,7 +9,7 @@ new_staff::new_staff(QWidget *parent) :
     ui(new Ui::new_staff)
 {
     ui->setupUi(this);
-    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
+    this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(463,407);
     connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAstaff,((manager_operation*)this->parentWidget()),&manager_operation::addToStaffList);
 }
@@ -43,6 +43,7 @@ void new_staff::on_register_Btn_clicked()
     if(flag)
     {
         QMessageBox::warning(this,"警告","该用户名已经存在");
+        return;
     }
     //不存在则获取
     else {
@@ -58,10 +59,11 @@ void new_staff::on_register_Btn_clicked()
         }
         else {
             QMessageBox::warning(this,"警告","两次密码不一致");
+            return;
         }
 
     }
-
+    this->close();
 
 }
 

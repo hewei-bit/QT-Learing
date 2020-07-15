@@ -9,7 +9,7 @@ new_goods::new_goods(QWidget *parent) :
     ui(new Ui::new_goods)
 {
     ui->setupUi(this);
-    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
+    this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(516,543);
     connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAgoods,((manager_operation*)this->parentWidget()),&manager_operation::addToGoodsList);
 }
@@ -22,8 +22,6 @@ new_goods::~new_goods()
 void new_goods::on_return_Btn_clicked()
 {
     //返回登录界面
-//    login* log = new login();
-//    log->show();
     ((manager_operation*)this->parentWidget())->show(); //QWidget*
     this->close();
 }

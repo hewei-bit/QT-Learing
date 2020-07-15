@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        add_num.cpp \
         bill.cpp \
         goods.cpp \
         main.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
         staff_operation.cpp
 
 HEADERS += \
+        add_num.h \
         bill.h \
         goods.h \
         login.h \
@@ -48,6 +50,7 @@ HEADERS += \
         staff_operation.h
 
 FORMS += \
+        add_num.ui \
         bill.ui \
         login.ui \
         manager_operation.ui \

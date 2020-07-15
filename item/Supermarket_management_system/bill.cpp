@@ -6,7 +6,7 @@ bill::bill(QWidget *parent) :
     ui(new Ui::bill)
 {
     ui->setupUi(this);
-    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
+    this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(691,587);
 }
 

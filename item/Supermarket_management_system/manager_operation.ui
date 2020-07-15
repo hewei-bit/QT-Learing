@@ -76,7 +76,7 @@
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="staff_tab">
           <property name="whatsThis">
@@ -148,6 +148,9 @@
              <height>441</height>
             </rect>
            </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
           </widget>
          </widget>
          <widget class="QWidget" name="goods_tab">
@@ -163,17 +166,33 @@
              <height>461</height>
             </rect>
            </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
           </widget>
           <widget class="QWidget" name="horizontalLayoutWidget_2">
            <property name="geometry">
             <rect>
-             <x>480</x>
-             <y>520</y>
-             <width>371</width>
+             <x>340</x>
+             <y>500</y>
+             <width>509</width>
              <height>51</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>进货</string>
+              </property>
+             </widget>
+            </item>
             <item>
              <widget class="QPushButton" name="add_goods_Btn">
               <property name="sizePolicy">

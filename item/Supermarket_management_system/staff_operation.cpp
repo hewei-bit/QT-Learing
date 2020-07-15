@@ -25,7 +25,7 @@ staff_operation::staff_operation(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::staff_operation)
 {
-    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
+    this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(1224,758);
     ui->setupUi(this);
 
@@ -380,6 +380,10 @@ void staff_operation::on_delete_Btn_clicked()
 
 void staff_operation::on_back_Btn_clicked()
 {
+    //清空链表
+    goodslist.clear();
+    shoppinglist.clear();
+
     ((login*)this->parentWidget())->show(); //QWidget*
     this->close();
 }

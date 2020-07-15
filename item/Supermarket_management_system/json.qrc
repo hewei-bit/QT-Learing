@@ -2,8 +2,8 @@
     <qresource prefix="/">
         <file>pic/timg.jpg</file>
         <file>qss/mystyle.qss</file>
-        <file>pic/学校介绍.png</file>
-        <file>pic/商场 (1).png</file>
-        <file>pic/商场.png</file>
+        <file>pic/market.png</file>
+        <file>pic/market-1.png</file>
+        <file>pic/school.png</file>
     </qresource>
 </RCC>

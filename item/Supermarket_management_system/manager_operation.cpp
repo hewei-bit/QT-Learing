@@ -5,6 +5,9 @@
 #include "new_goods.h"
 #include "new_staff.h"
 #include "goods.h"
+#include "add_num.h"
+
+
 
 /* 创建员工界面数据模型 */
 static QStandardItemModel* staff_model = new QStandardItemModel();
@@ -22,7 +25,7 @@ manager_operation::manager_operation(QWidget *parent) :
     ui->setupUi(this);
     //获取货品和员工列表
     readWriteJson *RWJson = new readWriteJson();
-    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
+    this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(955,708);
     //从文件中读取
     RWJson->goodsJsonTolist(goods_filename,goodslist_1);
@@ -104,9 +107,12 @@ void manager_operation::on_add_goods_Btn_clicked()
 
 void manager_operation::on_return_Btn_2_clicked()
 {
+    //清空链表
+    goodslist_1.clear();
+    stafflist.clear();
+
     //返回登录界面
-//    login* log = new login();
-//    log->show();
+
     ((login*)this->parentWidget())->show(); //QWidget*
     this->close();
 }
@@ -146,9 +152,11 @@ void manager_operation::on_delete__staff_Btn_clicked()
 
 void manager_operation::on_return_Btn_clicked()
 {
+    //清空链表
+    goodslist_1.clear();
+    stafflist.clear();
     //返回登录界面
-//    login* log = new login();
-//    log->show();
+
     ((login*)this->parentWidget())->show(); //QWidget*
     this->close();
 }
@@ -177,4 +185,39 @@ void manager_operation::addToGoodsList(goods anyone)
 
     //重新显示
     show_stock(goodslist_1);
+}
+
+void manager_operation::on_pushButton_clicked()
+{
+    //跳转至进货界面
+
+    add_num *an = new add_num(this);
+    an->show();
+
+}
+
+void manager_operation::addnumtostock(int num)
+{
+    //获取当前行号
+    int row = ui->goods_tableView->currentIndex().row();
+    qDebug() << row;
+    //查找链表中相应账户
+    QList<goods>::iterator iter;
+    for (iter = goodslist_1.begin(); iter!=goodslist_1.end(); ++iter) {
+        if(iter->getID() == stock_model->data(stock_model->index(row,0)))
+        {
+            qDebug() << iter->getQuantity();
+            iter->setQuantity(iter->getQuantity()+num);
+            qDebug() << iter->getQuantity();
+        }
+    }
+
+    //存入文件
+    readWriteJson *RWJson = new readWriteJson();
+    RWJson->goodslistTojson(goods_filename,goodslist_1);
+
+    //重新显示
+    show_stock(goodslist_1);
+
+
 }

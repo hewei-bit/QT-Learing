@@ -31,6 +31,9 @@ signals:
 
     void sendAgoods(goods anything);
 
+    void addnum(int num);
+
+
 private slots:
     void on_add_goods_Btn_clicked();
 
@@ -42,7 +45,13 @@ private slots:
 
     void on_return_Btn_clicked();
 
+    void on_pushButton_clicked();
+
+
+
 public slots:
+    void addnumtostock(int num);
+
     void addToStaffList(Staff anyone);
 
     void addToGoodsList(goods anyone);

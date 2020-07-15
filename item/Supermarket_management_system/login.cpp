@@ -14,10 +14,10 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
-    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
+    this->setWindowIcon(QIcon(":/pic/school.png"));
        this->setFixedSize(662,442);
     QImage Image;
-        Image.load(":/pic/学校介绍.png");
+        Image.load(":/pic/school.png");
         QPixmap pixmap = QPixmap::fromImage(Image);
         int with = ui->label_4->width();
         int height = ui->label_4->height();
@@ -66,8 +66,6 @@ void login::on_mannager_Btn_clicked()
                              "min-height:100px; "
                                   "font-size:16px;"
                                   "}");
-
-
             QM.setText(QString::fromStdString("登陆成功"));
             QM.setWindowTitle(QString::fromStdString("恭喜"));
             QM.setIcon(QMessageBox::Icon::Information );

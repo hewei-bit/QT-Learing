@@ -70,7 +70,7 @@
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="pay_tab">
           <attribute name="title">
@@ -172,6 +172,9 @@
              <width>771</width>
              <height>531</height>
             </rect>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
            </property>
           </widget>
           <widget class="QWidget" name="verticalLayoutWidget">
@@ -487,6 +490,9 @@
              <width>1041</width>
              <height>531</height>
             </rect>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
            </property>
           </widget>
          </widget>
