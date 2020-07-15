@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_connect_Btn_clicked()
 {
     //[1] 客户端向服务端发起请求
+    //绑定端口号和ip
    QString IP =  ui->IP_lineEdit->text();
    quint16 port = ui->port_lineEdit->text().toUShort();
    socket.connectToHost(IP,port);
