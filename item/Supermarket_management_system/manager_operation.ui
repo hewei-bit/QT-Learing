@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>955</width>
-    <height>749</height>
+    <height>708</height>
    </rect>
   </property>
   <property name="font">
@@ -20,13 +20,13 @@
    <string>超市 管理系统后台</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>-10</y>
       <width>951</width>
-      <height>711</height>
+      <height>671</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -248,7 +248,7 @@
      <x>0</x>
      <y>0</y>
      <width>955</width>
-     <height>33</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

@@ -13,11 +13,16 @@ int main(int argc, char *argv[])
     QByteArray array =  file.readAll();
     // #define qApp (static_cast<QApplication *>(QCoreApplication::instance()))
     qApp->setStyleSheet(array);
-//    login w;
-//    w.show();
 
-    staff_operation so;
-    so.show();
+
+    login w;
+    w.show();
+
+//    staff_operation so;
+//    so.show();
+
+//    manager_operation mo;
+//    mo.show();
 
     return a.exec();
 }

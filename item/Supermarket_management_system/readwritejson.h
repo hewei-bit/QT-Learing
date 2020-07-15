@@ -22,6 +22,7 @@
 
 #include "login.h"
 #include "goods.h"
+#include "staff.h"
 
 class readWriteJson
 {
@@ -29,22 +30,19 @@ public:
     readWriteJson();
     ~readWriteJson();
 
-    //账户操作
-    void addAcount(QString filename,QString account,QString password);
-    int isAccountInJson(QString filename,QString account);
-    bool isPasswordCorrect(QString filename,QString account,QString password);
-    void deleteAcount(QString filename,QString account);
+
 
     //货物操作
-
     void goodsJsonTolist(QString filename,QList<goods>& glist);
     void goodslistTojson(QString filename,QList<goods>& glist);
+
+    //账户操作
+    void accountJsonTolist(QString filename,QList<Staff>& slist);
+    void accountlistToJson(QString filename,QList<Staff>& slist);
 
     //打开json和转换json
     QByteArray open_json(QString filename);
     void JsonToFile(QJsonObject object,QString filename);
-
-
 
 private:
     QList<goods> GDLIST;

@@ -14,7 +14,7 @@ class goods
 public:
 
     goods(int ID=1000,QString species="",QString name="",
-          int quantity=0,int cost=0,int price=0,QString unit="");
+          int quantity=0,int cost=0,int price=0,QString unit="",int single_sum=0);
     ~goods();
 
     bool isgoodsInrepository(goods goodsname,QList<goods>& glist);
@@ -50,6 +50,9 @@ public:
 
     void setUnit(const QString &value);
 
+    int getSingle_sum() const;
+    void setSingle_sum(int value);
+
 private:
     int ID;
     QString species;
@@ -57,6 +60,7 @@ private:
     int quantity;
     int cost;
     int price;
+    int single_sum;
     QString unit;
 
 };

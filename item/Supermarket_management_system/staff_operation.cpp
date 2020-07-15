@@ -8,16 +8,16 @@
 #include "goods.h"
 
 /* 创建结算界面数据模型 */
-QStandardItemModel* settlement_model = new QStandardItemModel();
+static QStandardItemModel* settlement_model = new QStandardItemModel();
 //库存界面数据模型
-QStandardItemModel* model = new QStandardItemModel();
+static QStandardItemModel* model = new QStandardItemModel();
 
 //记录行号
 int staff_operation::bill_serial = 0;
 //货物链表
-QList<goods> goodslist;
+static QList<goods> goodslist;
 //购物车链表
-QList<goods> shoppinglist;
+static QList<goods> shoppinglist;
 
 
 
@@ -25,7 +25,7 @@ staff_operation::staff_operation(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::staff_operation)
 {
-
+    this->setWindowIcon(QIcon(":/pic/学校介绍.png"));
     this->setFixedSize(1224,758);
     ui->setupUi(this);
 
@@ -201,7 +201,12 @@ void staff_operation::on_add_goods_Btn_clicked()
             gg.setName(ui->goods_name_comboBox->currentText());
             gg.setSpecies(ui->goods_type_comboBox->currentText());
             gg.setQuantity(ui->goods_sell_num_spinBox->text().toInt());
+            int num = ui->goods_sell_num_spinBox->text().toInt();
+            int single = ui->goods_price_textBrowser->toPlainText().toInt();
+            int single_sum = single*num;
+            gg.setSingle_sum(single_sum);
             shoppinglist.append(gg);
+            //不显示进价和单位
             //显示
             /* 加载第一列(ID)数据 */
             settlement_model->setItem(bill_serial, 0, new QStandardItem(ui->goods_ID_textBrowser->toPlainText()));
@@ -213,11 +218,8 @@ void staff_operation::on_add_goods_Btn_clicked()
             settlement_model->setItem(bill_serial, 3, new QStandardItem(ui->goods_sell_num_spinBox->text()));
             /* 加载第五列(售价)数据 */
             settlement_model->setItem(bill_serial, 4, new QStandardItem(ui->goods_price_textBrowser->toPlainText()));
-            /* 加载第六列(合计)数据 */
-            int num = ui->goods_sell_num_spinBox->text().toInt();
-            int single = ui->goods_price_textBrowser->toPlainText().toInt();
-            int total = single*num;
-            settlement_model->setItem(bill_serial, 5, new QStandardItem(QString("%1").arg(total)));
+            /* 加载第六列(单个合计)数据 */
+            settlement_model->setItem(bill_serial, 5, new QStandardItem(QString("%1").arg(single_sum)));
 
             bill_serial++;
 
@@ -239,21 +241,19 @@ void staff_operation::on_add_goods_Btn_clicked()
             ui->goods_num_textBrowser->setText(QString("%1").arg(new_quantity));
         }
 
-
         //调试
-        for (iter = shoppinglist.begin(); iter != shoppinglist.end(); ++iter){
-            qDebug() << iter->getID();
-            qDebug() << iter->getQuantity();
-        }
+//        for (iter = shoppinglist.begin(); iter != shoppinglist.end(); ++iter){
+//            qDebug() << iter->getID();
+//            qDebug() << iter->getQuantity();
+//        }
 
-        for (iter_next = goodslist.begin(); iter_next != goodslist.end(); ++iter_next){
-            if(ui->goods_ID_textBrowser->toPlainText() == QString("%1").arg(iter_next->getID()))
-            {
-                qDebug() << iter_next->getID();
-                qDebug() << iter_next->getQuantity();
-            }
-
-        }
+//        for (iter_next = goodslist.begin(); iter_next != goodslist.end(); ++iter_next){
+//            if(ui->goods_ID_textBrowser->toPlainText() == QString("%1").arg(iter_next->getID()))
+//            {
+//                qDebug() << iter_next->getID();
+//                qDebug() << iter_next->getQuantity();
+//            }
+//        }
     }
 
 }
@@ -261,9 +261,6 @@ void staff_operation::on_add_goods_Btn_clicked()
 //结算
 void staff_operation::on_buy_Btn_clicked()
 {
-    //将链表存入文件
-
-
     //跳转至管理员界面
     bill *billshow = new bill(this);
     billshow->show();
@@ -272,6 +269,37 @@ void staff_operation::on_buy_Btn_clicked()
     connect(billshow,&bill::sendbill,billshow,&bill::showbill);
     emit billshow->sendbill(shoppinglist);
 
+    //将链表存入文件
+    readWriteJson *RWJson = new readWriteJson();
+    RWJson->goodslistTojson(filename,goodslist);
+
+    //清空购物和库存界面以及链表
+    model->clear();
+    settlement_model->clear();
+    shoppinglist.clear();
+    goodslist.clear();
+    bill_serial = 0;
+    //重新读取库存界面
+    //从文件中读取
+    RWJson->goodsJsonTolist(filename,goodslist);
+    showShoppingcar(shoppinglist);
+    showStock(goodslist);
+
+    //更新商品的数量
+    //将当前选项名赋值给变量str，输出当前选项名
+    QString str = ui->goods_name_comboBox->currentText();
+
+    //添加至商品类型的combox
+    QList<goods>::iterator iter;
+    for (iter = goodslist.begin(); iter != goodslist.end(); ++iter)
+    {
+        if(iter->getName() == str)
+        {
+            ui->goods_ID_textBrowser->setText(QString("%1").arg(iter->getID()));
+            ui->goods_num_textBrowser->setText(QString("%1").arg(iter->getQuantity()));
+            ui->goods_price_textBrowser->setText(QString("%1").arg(iter->getPrice()));
+        }
+    }
 }
 
 //清除购物车
@@ -294,7 +322,6 @@ void staff_operation::on_clean_Btn_clicked()
     //更新商品的数量
     //将当前选项名赋值给变量str，输出当前选项名
     QString str = ui->goods_name_comboBox->currentText();
-    qDebug()<<"Text:"<< str;
 
     //添加至商品类型的combox
     QList<goods>::iterator iter;
@@ -316,13 +343,37 @@ void staff_operation::on_delete_Btn_clicked()
     bill_serial--;
     int row = ui->pay_tableView->currentIndex().row();
     //取得货品数量加回链表之中
+    int theID = settlement_model->data(settlement_model->index(row,0)).toInt();
+    QList<goods>::iterator iter;
+    for (iter = goodslist.begin(); iter != goodslist.end(); ++iter){
+        if(theID == iter->getID())
+        {
+            qDebug() << iter->getID();
+            int thenum = settlement_model->data(settlement_model->index(row,3)).toInt();
+            qDebug() << iter->getQuantity();
+            iter->setQuantity(thenum + iter->getQuantity());
+            qDebug() << iter->getQuantity();
+        }
+    }
 
+    //重新显示库存
+    showStock(goodslist);
 
+    //更新商品的数量
+    QString str = ui->goods_name_comboBox->currentText();
+    for (iter = goodslist.begin(); iter != goodslist.end(); ++iter)
+    {
+        if(iter->getName() == str)
+        {
+            ui->goods_ID_textBrowser->setText(QString("%1").arg(iter->getID()));
+            ui->goods_num_textBrowser->setText(QString("%1").arg(iter->getQuantity()));
+            ui->goods_price_textBrowser->setText(QString("%1").arg(iter->getPrice()));
+        }
+    }
+
+    //移除出购物车
     settlement_model->removeRow(row);
     qDebug()<< bill_serial;
-
-
-
 
 }
 
@@ -348,7 +399,6 @@ void staff_operation::on_goods_type_comboBox_currentTextChanged(const QString &a
 
     //将当前选项名赋值给变量str，输出当前选项名
     QString str = ui->goods_type_comboBox->currentText();
-    qDebug()<<"Text:"<< str;
 
     //添加至商品类型的combox
     QStringList goodsnamelist;
@@ -367,7 +417,6 @@ void staff_operation::on_goods_name_comboBox_currentTextChanged(const QString &a
 {
     //将当前选项名赋值给变量str，输出当前选项名
     QString str = ui->goods_name_comboBox->currentText();
-    qDebug()<<"Text:"<< str;
 
     //添加至商品类型的combox
     QList<goods>::iterator iter;

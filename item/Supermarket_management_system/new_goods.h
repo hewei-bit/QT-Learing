@@ -2,6 +2,8 @@
 #define NEW_GOODS_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include "goods.h"
 
 namespace Ui {
 class new_goods;
@@ -15,11 +17,17 @@ public:
     explicit new_goods(QWidget *parent = nullptr);
     ~new_goods();
 
+
+
 private slots:
     void on_return_Btn_clicked();
 
+    void on_add_Btn_clicked();
+
 private:
     Ui::new_goods *ui;
+    QString account_filename = "./resources/account.json";
+    QString goods_filename = "./resources/goods.json";
 };
 
 #endif // NEW_GOODS_H

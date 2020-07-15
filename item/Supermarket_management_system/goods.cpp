@@ -3,9 +3,9 @@
 
 
 goods::goods(int ID,QString species,QString name,
-             int quantity,int cost,int price,QString unit):
+             int quantity,int cost,int price,QString unit,int single_sum):
     ID(ID),species(species),name(name),
-    quantity(quantity),cost(cost),price(price),unit(unit)
+    quantity(quantity),cost(cost),price(price),unit(unit),single_sum(single_sum)
 {}
 
 goods::~goods()
@@ -112,4 +112,14 @@ void goods::setPrice(int value)
 void goods::setUnit(const QString &value)
 {
     unit = value;
+}
+
+int goods::getSingle_sum() const
+{
+    return single_sum;
+}
+
+void goods::setSingle_sum(int value)
+{
+    single_sum = value;
 }

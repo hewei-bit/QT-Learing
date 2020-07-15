@@ -57,6 +57,7 @@ private slots:
 private:
     Ui::staff_operation *ui;
     QString filename = "./resources/goods.json";
+
     static int bill_serial;
 
 

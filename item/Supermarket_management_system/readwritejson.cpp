@@ -13,112 +13,6 @@ readWriteJson::~readWriteJson()
 {
 
 }
-//添加员工账户，不存在才执行
-void readWriteJson::addAcount(QString filename, QString account, QString password)
-{
-    if(isAccountInJson(filename,account) == 0)
-    {
-        QByteArray text = open_json(filename);
-        // 使用QJsonObject对象插入键值对s
-        QJsonDocument doc(QJsonDocument::fromJson(text));
-        QJsonObject object = doc.object();
-        QJsonArray staffarray = object.value("staff").toArray();
-        QJsonObject accountObject;
-        accountObject.insert("account",account);
-        accountObject.insert("password",password);
-        staffarray.append(accountObject);
-        object.insert("staff",staffarray);
-
-        JsonToFile(object,filename);
-    }
-    else
-    {
-        qDebug() << "exits";
-    }
-}
-//遍历员工账号，未找到返回0，已找到返回1
-int readWriteJson::isAccountInJson(QString filename, QString account)
-{
-    QByteArray text = open_json(filename);
-
-    QJsonDocument doc = QJsonDocument::fromJson(text);
-    QJsonObject object = doc.object();
-    QJsonArray staffarray = object.value("staff").toArray();
-
-    for (int i = 0; i < staffarray.count(); i++) {
-        QJsonObject anyoneObject = staffarray.at(i).toObject();
-        QString anyone_account = anyoneObject.value("account").toString();
-        qDebug()<<anyone_account;
-        if(anyone_account != account)
-            continue;
-        else {
-            return i;
-        }
-    }
-
-    return -1;
-}
-//检查员工密码是否正确，正确返回true，错误返回false
-bool readWriteJson::isPasswordCorrect(QString filename, QString account, QString password)
-{
-    int i = isAccountInJson(filename,account);
-    if(i != -1)
-    {
-        QByteArray text = open_json(filename);
-        QJsonParseError errora;
-        QJsonDocument doc(QJsonDocument::fromJson(text,&errora));
-        QJsonObject object = doc.object();
-        QJsonArray staffarray = object.value("staff").toArray();
-        QJsonObject anyoneObject = staffarray.at(i).toObject();
-        QString anyone_password = anyoneObject.value("password").toString();
-        if(anyone_password != password)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    else {
-        return false;
-    }
-}
-//删除员工账户
-void readWriteJson::deleteAcount(QString filename, QString account)
-{
-    int i = isAccountInJson(filename,account);
-    if(i != -1)
-    {
-        QFile file;
-        file.setFileName(filename);
-        if(!file.open(QIODevice::ReadOnly|QIODevice::Text))
-        {
-            qDebug() << "file open error";
-        }
-        else {
-            qDebug() << "file open";
-        }
-        QByteArray text = file.readAll();
-        file.close();
-        file.remove();
-        // 使用QJsonObject对象插入键值对。
-        QJsonDocument doc(QJsonDocument::fromJson(text));
-        QJsonObject object = doc.object();
-        QJsonArray staffarray = object.value("staff").toArray();
-        QJsonObject anyoneObject = staffarray.at(i).toObject();
-        staffarray.removeAt(i);
-        object.insert("staff",staffarray);
-
-        JsonToFile(object,filename);
-    }
-    else
-    {
-        qDebug() << "don't exist";
-    }
-}
-
-
 
 void readWriteJson::goodsJsonTolist(QString filename,QList<goods>& glist)
 {
@@ -177,6 +71,49 @@ void readWriteJson::goodslistTojson(QString filename,QList<goods> &glist)
     doc.setObject(object);
     JsonToFile(object,filename);
 
+}
+
+void readWriteJson::accountJsonTolist(QString filename, QList<Staff> &slist)
+{
+    //打开文件
+    QByteArray text = open_json(filename);
+
+    QJsonDocument doc = QJsonDocument::fromJson(text);
+    QJsonObject object = doc.object();
+    QJsonArray staffarray = object.value("staff").toArray();
+
+    for (int i = 0; i < staffarray.size(); ++i) {
+        QJsonObject anyone_object = staffarray.at(i).toObject();
+        //读取信息
+        QString anyone_account = anyone_object.value("account").toString();
+        QString anyone_password = anyone_object.value("password").toString();
+        //构造职员账户
+        Staff anyone(anyone_account,anyone_password);
+        //加入链表
+        slist.append(anyone);
+    }
+}
+
+void readWriteJson::accountlistToJson(QString filename, QList<Staff> &slist)
+{
+    QFile file;
+    file.setFileName(filename);
+    file.remove();
+    QJsonObject object;
+
+    QJsonArray staff_array;
+    for (int i = 0; i < slist.count(); ++i) {
+        QJsonObject staffObject;
+        staffObject.insert("account",slist.at(i).getAccount());
+        staffObject.insert("password",slist.at(i).getPassword());
+
+        staff_array.append(staffObject);
+    }
+    object.insert("staff",staff_array);
+
+    QJsonDocument doc;
+    doc.setObject(object);
+    JsonToFile(object,filename);
 }
 
 

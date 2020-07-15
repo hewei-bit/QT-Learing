@@ -2,6 +2,7 @@
 #define NEW_STAFF_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 
 namespace Ui {
 class new_staff;
@@ -15,6 +16,8 @@ public:
     explicit new_staff(QWidget *parent = nullptr);
     ~new_staff();
 
+
+
 private slots:
     void on_register_Btn_clicked();
 
@@ -22,6 +25,9 @@ private slots:
 
 private:
     Ui::new_staff *ui;
+
+    QString account_filename = "./resources/account.json";
+    QString goods_filename = "./resources/goods.json";
 };
 
 #endif // NEW_STAFF_H

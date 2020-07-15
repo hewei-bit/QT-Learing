@@ -40,16 +40,6 @@ public:
     explicit login(QWidget *parent = nullptr);
     ~login();
 
-
-    void addJson(QString account,QString password);
-    int isAccountInJson(QString account);
-    bool isPasswordCorrect(QString account,QString password);
-    void deleteJson(QString account);
-
-    QByteArray open_json(QString filename);
-    void JsonToFile(QJsonObject object,QString filename);
-
-
 private slots:
     void on_mannager_Btn_clicked();
 
@@ -64,6 +54,8 @@ private:
     QString password;
     QString accountfilename = "./resources/account.json";
     QString goodsfilename = "./resources/goods.json";
+    QString managerfilename = "./resources/manager_account.json";
+
 };
 
 #endif // LOGIN_H

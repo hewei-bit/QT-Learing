@@ -33,6 +33,7 @@ SOURCES += \
         new_goods.cpp \
         new_staff.cpp \
         readwritejson.cpp \
+        staff.cpp \
         staff_operation.cpp
 
 HEADERS += \
@@ -43,6 +44,7 @@ HEADERS += \
         new_goods.h \
         new_staff.h \
         readwritejson.h \
+        staff.h \
         staff_operation.h
 
 FORMS += \

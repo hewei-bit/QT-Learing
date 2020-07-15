@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>376</width>
+    <width>691</width>
     <height>587</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
    <widget class="QPushButton" name="return_Btn">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>560</x>
       <y>480</y>
       <width>91</width>
       <height>41</height>
@@ -30,14 +30,36 @@
      <string>打印小票</string>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>20</y>
-      <width>291</width>
-      <height>441</height>
+      <x>45</x>
+      <y>21</y>
+      <width>611</width>
+      <height>391</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>430</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string>总计：</string>
     </property>
    </widget>
   </widget>
@@ -46,7 +68,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>376</width>
+     <width>691</width>
      <height>26</height>
     </rect>
    </property>
