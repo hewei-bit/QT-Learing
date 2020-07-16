@@ -26,8 +26,8 @@ private slots:
 private:
     Ui::new_staff *ui;
 
-    QString account_filename = "./resources/account.json";
-    QString goods_filename = "./resources/goods.json";
+    QString account_filename = "../Supermarket_management_system/resources/account.json";
+    QString goods_filename = "../Supermarket_management_system/resources/goods.json";
 };
 
 #endif // NEW_STAFF_H

@@ -49,6 +49,8 @@ private slots:
 
 
 
+    void on_Btn_clicked();
+
 public slots:
     void addnumtostock(int num);
 
@@ -58,9 +60,9 @@ public slots:
 
 private:
     Ui::manager_operation *ui;
-    QString account_filename = "./resources/account.json";
-    QString goods_filename = "./resources/goods.json";
-
+    QString account_filename = "../Supermarket_management_system/resources/account.json";
+    QString goods_filename = "../Supermarket_management_system/resources/goods.json";
+    QString sales_record_filename = "../Supermarket_management_system/resources/sold.txt";
 
 };
 

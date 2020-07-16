@@ -46,8 +46,8 @@ public:
 
 private:
     QList<goods> GDLIST;
-    QString acount_filename = "./resources/account.json";
-    QString goods_filename = "./resources/goods.json";
+    QString acount_filename = "../Supermarket_management_system/resources/account.json";
+    QString goods_filename = "../Supermarket_management_system/resources/goods.json";
 };
 
 

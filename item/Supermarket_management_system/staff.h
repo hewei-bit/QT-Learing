@@ -53,7 +53,7 @@ public:
 private:
     QString account;
     QString password;
-    QString acount_filename = "./resources/account.json";
+    QString acount_filename = "../Supermarket_management_system/resources/account.json";
 };
 
 #endif // STAFF_H

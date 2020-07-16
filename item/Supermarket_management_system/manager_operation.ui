@@ -76,7 +76,7 @@
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="staff_tab">
           <property name="whatsThis">
@@ -220,6 +220,34 @@
              </widget>
             </item>
            </layout>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="sales_record_tab">
+          <attribute name="title">
+           <string>销售记录</string>
+          </attribute>
+          <widget class="QTextBrowser" name="sales_record_text">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>20</y>
+             <width>341</width>
+             <height>481</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="Btn">
+           <property name="geometry">
+            <rect>
+             <x>260</x>
+             <y>520</y>
+             <width>111</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string> 返回</string>
+           </property>
           </widget>
          </widget>
         </widget>

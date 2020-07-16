@@ -24,6 +24,7 @@ public slots:
 
 private:
     Ui::bill *ui;
+    QString sales_record_filename = "../Supermarket_management_system/resources/sold.txt";
 };
 
 #endif // BILL_H

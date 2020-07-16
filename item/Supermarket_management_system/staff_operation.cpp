@@ -239,21 +239,9 @@ void staff_operation::on_add_goods_Btn_clicked()
 
             //更新购物界面
             ui->goods_num_textBrowser->setText(QString("%1").arg(new_quantity));
+
         }
 
-        //调试
-//        for (iter = shoppinglist.begin(); iter != shoppinglist.end(); ++iter){
-//            qDebug() << iter->getID();
-//            qDebug() << iter->getQuantity();
-//        }
-
-//        for (iter_next = goodslist.begin(); iter_next != goodslist.end(); ++iter_next){
-//            if(ui->goods_ID_textBrowser->toPlainText() == QString("%1").arg(iter_next->getID()))
-//            {
-//                qDebug() << iter_next->getID();
-//                qDebug() << iter_next->getQuantity();
-//            }
-//        }
     }
 
 }
@@ -305,18 +293,24 @@ void staff_operation::on_buy_Btn_clicked()
 //清除购物车
 void staff_operation::on_clean_Btn_clicked()
 {
+    //表标记变为零
     bill_serial = 0;
     qDebug()<< bill_serial;
-    settlement_model->removeRows(0,settlement_model->rowCount());
-    model->removeRows(0,model->rowCount());
-    goodslist.clear();
-    //库存和购物界面重新从文件中加载
-    //获取货品列表
+
+    //将链表存入文件
     readWriteJson *RWJson = new readWriteJson();
+    RWJson->goodslistTojson(filename,goodslist);
+
+    //清空购物和库存界面以及链表
+    model->clear();
+    settlement_model->clear();
+    shoppinglist.clear();
+    goodslist.clear();
+    bill_serial = 0;
+    //重新读取库存界面
     //从文件中读取
     RWJson->goodsJsonTolist(filename,goodslist);
-
-    //显示库存
+    showShoppingcar(shoppinglist);
     showStock(goodslist);
 
     //更新商品的数量

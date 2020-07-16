@@ -52,9 +52,9 @@ private:
     Ui::login *ui;
     QString account;
     QString password;
-    QString accountfilename = "./resources/account.json";
-    QString goodsfilename = "./resources/goods.json";
-    QString managerfilename = "./resources/manager_account.json";
+    QString accountfilename = "../Supermarket_management_system/resources/account.json";
+    QString goodsfilename = "../Supermarket_management_system/resources/goods.json";
+    QString managerfilename = "../Supermarket_management_system/resources/manager_account.json";
 
 };
 

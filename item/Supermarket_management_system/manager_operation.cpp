@@ -30,11 +30,17 @@ manager_operation::manager_operation(QWidget *parent) :
     //从文件中读取
     RWJson->goodsJsonTolist(goods_filename,goodslist_1);
     RWJson->accountJsonTolist(account_filename,stafflist);
-
-
     //显示库存
     show_stock(goodslist_1);
     show_staff(stafflist);
+    //销售记录
+    QFile sales_rec;
+    sales_rec.setFileName(sales_record_filename);
+    sales_rec.open(QIODevice::ReadOnly);
+    QByteArray  array = sales_rec.readAll();
+    ui->sales_record_text->setText(array);
+    //
+    ui->tabWidget->setCurrentIndex(0);
 
 }
 
@@ -102,7 +108,6 @@ void manager_operation::on_add_goods_Btn_clicked()
     new_goods *newgoods = new new_goods(this);
     newgoods->show();
 
-//    this->hide();
 }
 
 void manager_operation::on_return_Btn_2_clicked()
@@ -123,7 +128,7 @@ void manager_operation::on_add_staff_Btn_clicked()
     //跳转至新增员工界面
     new_staff *newstaff = new new_staff(this);
     newstaff->show();
-//    this->hide();
+
 
 }
 
@@ -163,8 +168,11 @@ void manager_operation::on_return_Btn_clicked()
 
 void manager_operation::addToStaffList(Staff anyone)
 {
+qDebug() << "cao"+anyone.getAccount();
+
     //加入链表
     stafflist.append(anyone);
+
     //存入文件
     readWriteJson *RWJson = new readWriteJson();
     RWJson->accountlistToJson(account_filename,stafflist);
@@ -179,6 +187,7 @@ void manager_operation::addToGoodsList(goods anyone)
     qDebug() << anyone.getName();
     //加入链表
     goodslist_1.append(anyone);
+
     //存入文件
     readWriteJson *RWJson = new readWriteJson();
     RWJson->goodslistTojson(goods_filename,goodslist_1);
@@ -220,4 +229,15 @@ void manager_operation::addnumtostock(int num)
     show_stock(goodslist_1);
 
 
+}
+
+void manager_operation::on_Btn_clicked()
+{
+    //清空链表
+    goodslist_1.clear();
+    stafflist.clear();
+
+    //返回登录界面
+    ((login*)this->parentWidget())->show(); //QWidget*
+    this->close();
 }

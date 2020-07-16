@@ -35,7 +35,7 @@ void MainWindow::on_selectBtn_clicked()
     QString filepath = QFileDialog::getOpenFileName(this);
     ui->fileEdit->setText(filepath);
 }
-
+//发送文件头
 void MainWindow::send_file_head()
 {
     //创建文件信息对象
@@ -49,6 +49,7 @@ void MainWindow::send_file_head()
     QDataStream out(&array,QIODevice::WriteOnly);
     out << filesize <<fileName;
     ui->progressBar->setMaximum(static_cast<int>(filesize));
+    msocket.write(array); //将文件头信息发送到网络中
     //将文件的相关信息转换成一个文件对象，为发送文件做准备
     file.setFileName(ui->fileEdit->text());
     file.open(QIODevice::ReadOnly);
@@ -65,8 +66,6 @@ void MainWindow::send_file_text()
         sendsize+=array.size();
         qDebug()<<sendsize;
         ui->progressBar->setValue(static_cast<int>(sendsize));
-
-
     }
     if(sendsize == filesize)
     {

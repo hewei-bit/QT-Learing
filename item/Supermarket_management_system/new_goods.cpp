@@ -3,7 +3,7 @@
 #include "manager_operation.h"
 #include "readwritejson.h"
 
-
+static int num_1 = 0;
 new_goods::new_goods(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::new_goods)
@@ -11,7 +11,7 @@ new_goods::new_goods(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(516,543);
-    connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAgoods,((manager_operation*)this->parentWidget()),&manager_operation::addToGoodsList);
+
 }
 
 new_goods::~new_goods()
@@ -91,10 +91,16 @@ void new_goods::on_add_Btn_clicked()
             QMessageBox::warning(this,"警告","请填写正确的进货数！！！");
         }
         else {
+            if(num_1)
+            {
+                connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAgoods,((manager_operation*)this->parentWidget()),&manager_operation::addToGoodsList);
+            }
             //存入新建goods节点
             goods new_goods(new_ID,new_species,new_name,new_quantity,new_cost,new_price,new_unit);
             //发送回父界面
             emit ((manager_operation*)this->parentWidget())->sendAgoods(new_goods);
+            num_1++;
+
         }
     }
 }

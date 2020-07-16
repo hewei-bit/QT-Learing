@@ -22,7 +22,6 @@ void MainWindow::new_client()
 {
     QTcpSocket *socket = mserver.nextPendingConnection();
 
-    //建立客户端发送数据的槽
     //建立客户端发送的数据的槽
     connect(socket,&QTcpSocket::readyRead,this,&MainWindow::read_data);
     filesize = 0;

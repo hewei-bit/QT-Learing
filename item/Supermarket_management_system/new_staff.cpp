@@ -3,7 +3,7 @@
 #include "manager_operation.h"
 #include "readwritejson.h"
 
-
+static int num = 0;
 new_staff::new_staff(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::new_staff)
@@ -11,7 +11,7 @@ new_staff::new_staff(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/pic/school.png"));
     this->setFixedSize(463,407);
-    connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAstaff,((manager_operation*)this->parentWidget()),&manager_operation::addToStaffList);
+
 }
 
 new_staff::~new_staff()
@@ -30,6 +30,7 @@ void new_staff::on_register_Btn_clicked()
 
     //获取此次输入的账户名
     QString new_account = ui->account_lineEdit->text();
+    qDebug() << "new"+new_account;
     //查看账户是否存在
     bool flag = false;
     for (int i = 0; i < stafflist_new.size(); ++i) {
@@ -54,15 +55,22 @@ void new_staff::on_register_Btn_clicked()
         {
             //存入新建Staff节点
             Staff new_staff(new_account,new_password_1);
+            if(num == 0)
+            {
+                connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAstaff,((manager_operation*)this->parentWidget()),&manager_operation::addToStaffList);
+            }
             //发送回父界面
+            qDebug() << "emit";
             emit ((manager_operation*)this->parentWidget())->sendAstaff(new_staff);
+
+            num++;
         }
         else {
             QMessageBox::warning(this,"警告","两次密码不一致");
             return;
         }
-
     }
+
     this->close();
 
 }
