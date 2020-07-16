@@ -15,11 +15,11 @@ int main(int argc, char *argv[])
     qApp->setStyleSheet(array);
 
 
-//    login w;
-//    w.show();
+    login w;
+    w.show();
 
-    staff_operation so;
-    so.show();
+//    staff_operation so;
+//    so.show();
 
 //    manager_operation mo;
 //    mo.show();

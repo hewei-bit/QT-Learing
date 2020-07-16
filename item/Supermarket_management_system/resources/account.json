@@ -1,0 +1,24 @@
+{
+    "staff": [
+        {
+            "account": "hewei",
+            "password": "123"
+        },
+        {
+            "account": "lulu",
+            "password": "123"
+        },
+        {
+            "account": "aji",
+            "password": "123"
+        },
+        {
+            "account": "wyy",
+            "password": "123"
+        },
+        {
+            "account": "lanxiaohong",
+            "password": "123"
+        }
+    ]
+}
