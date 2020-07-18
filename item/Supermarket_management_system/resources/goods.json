@@ -5,7 +5,7 @@
             "cost": 22,
             "name": "洗发水",
             "price": 30,
-            "quantity": 104,
+            "quantity": 168,
             "species": "日用品",
             "unit": "瓶"
         },
@@ -23,7 +23,7 @@
             "cost": 10,
             "name": "毛巾",
             "price": 20,
-            "quantity": 136,
+            "quantity": 124,
             "species": "日用品",
             "unit": "条"
         },
@@ -41,7 +41,7 @@
             "cost": 1200,
             "name": "手机",
             "price": 1500,
-            "quantity": 8,
+            "quantity": 5,
             "species": "电子产品",
             "unit": "台"
         },
@@ -59,7 +59,7 @@
             "cost": 5,
             "name": "薯片",
             "price": 6,
-            "quantity": 2973,
+            "quantity": 2953,
             "species": "食物",
             "unit": "包"
         },
@@ -68,7 +68,7 @@
             "cost": 30,
             "name": "牛肉",
             "price": 33,
-            "quantity": 371,
+            "quantity": 368,
             "species": "食物",
             "unit": "斤"
         },
@@ -132,6 +132,33 @@
             "name": "羊肉",
             "price": 40,
             "quantity": 98,
+            "species": "食物",
+            "unit": "斤"
+        },
+        {
+            "ID": 1016,
+            "cost": 20,
+            "name": "榴莲",
+            "price": 25,
+            "quantity": 110,
+            "species": "食物",
+            "unit": "斤"
+        },
+        {
+            "ID": 1017,
+            "cost": 20,
+            "name": "芒果",
+            "price": 25,
+            "quantity": 100,
+            "species": "食物",
+            "unit": "斤"
+        },
+        {
+            "ID": 1017,
+            "cost": 20,
+            "name": "芒果",
+            "price": 25,
+            "quantity": 100,
             "species": "食物",
             "unit": "斤"
         }

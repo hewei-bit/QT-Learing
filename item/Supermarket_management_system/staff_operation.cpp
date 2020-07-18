@@ -297,9 +297,31 @@ void staff_operation::on_clean_Btn_clicked()
     bill_serial = 0;
     qDebug()<< bill_serial;
 
+    //取得货品数量加回链表之中
+    int row = settlement_model->rowCount();
+    qDebug() << row;
+    for (int i = 0; i < row; ++i) {
+        int theID = settlement_model->data(settlement_model->index(i,0)).toInt();
+        qDebug() << theID;
+        QList<goods>::iterator iter;
+        for (iter = goodslist.begin(); iter != goodslist.end(); ++iter)
+        {
+            if(theID == iter->getID())
+            {
+                qDebug() << iter->getID();
+                int thenum = settlement_model->data(settlement_model->index(i,3)).toInt();
+                qDebug() << iter->getQuantity();
+                iter->setQuantity(thenum + iter->getQuantity());
+                qDebug() << iter->getQuantity();
+            }
+        }
+    }
+
+
     //将链表存入文件
     readWriteJson *RWJson = new readWriteJson();
     RWJson->goodslistTojson(filename,goodslist);
+
 
     //清空购物和库存界面以及链表
     model->clear();
@@ -307,6 +329,7 @@ void staff_operation::on_clean_Btn_clicked()
     shoppinglist.clear();
     goodslist.clear();
     bill_serial = 0;
+
     //重新读取库存界面
     //从文件中读取
     RWJson->goodsJsonTolist(filename,goodslist);
@@ -336,6 +359,7 @@ void staff_operation::on_delete_Btn_clicked()
 
     bill_serial--;
     int row = ui->pay_tableView->currentIndex().row();
+
     //取得货品数量加回链表之中
     int theID = settlement_model->data(settlement_model->index(row,0)).toInt();
     QList<goods>::iterator iter;

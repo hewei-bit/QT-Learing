@@ -91,7 +91,7 @@ void new_goods::on_add_Btn_clicked()
             QMessageBox::warning(this,"警告","请填写正确的进货数！！！");
         }
         else {
-            if(num_1)
+            if(num_1==0)
             {
                 connect(((manager_operation*)this->parentWidget()),&manager_operation::sendAgoods,((manager_operation*)this->parentWidget()),&manager_operation::addToGoodsList);
             }
