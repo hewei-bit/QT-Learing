@@ -28,14 +28,9 @@ private slots:
 
     bool open();
 
-
-
     void clearsheet();
 
     void readdb();
-
-
-
 
     void on_tableWidget_itemActivated(QTableWidgetItem *item);
 

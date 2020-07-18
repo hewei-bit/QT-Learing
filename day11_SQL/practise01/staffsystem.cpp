@@ -46,7 +46,7 @@ bool staffsystem::open()
     database = QSqlDatabase::addDatabase("QSQLITE");
 
     //给数据库取名字,该名字的后缀".db"
-    database.setDatabaseName("./staff.db");
+    database.setDatabaseName("../practise01/staff.db");
 
     if(!database.open())
     {
