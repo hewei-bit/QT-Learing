@@ -5,6 +5,14 @@
 #include <QFileDialog>
 #include <QPixmap>
 #include <QMainWindow>
+#include <QtDebug>
+#include <QTimer>
+#include <QWindow>
+#include <QScreen>
+#include <QStandardPaths>
+#include <QImageWriter>
+#include <QMessageBox>
+
 
 namespace Ui {
 class sreen_shot;
@@ -21,9 +29,11 @@ public:
 private slots:
     void on_startbtn_clicked();
 
+    void shootScreen();
+
     void on_save_btn_clicked();
 
-    void on_pushButton_3_clicked();
+    void updateCheckBox();
 
     void on_exit_btn_clicked();
 
@@ -31,6 +41,9 @@ private slots:
 
 private:
     Ui::sreen_shot *ui;
+
+
+    QPixmap originalPixmap;
 };
 
 #endif // SREEN_SHOT_H
