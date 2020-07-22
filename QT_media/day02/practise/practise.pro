@@ -1,14 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-07-21T16:59:41
+# Project created by QtCreator 2020-07-22T11:17:15
 #
 #-------------------------------------------------
 
-QT       += core gui multimedia
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = qt_demo56_camera
+TARGET = practise
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,13 +26,13 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        qmplayer.cpp
 
 HEADERS += \
-        mainwindow.h
+        qmplayer.h
 
 FORMS += \
-        mainwindow.ui
+        qmplayer.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

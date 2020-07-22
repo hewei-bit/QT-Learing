@@ -31,7 +31,7 @@ void MainWindow::read_data(QNetworkReply* relpy)
 
      QJsonObject citynowObject = arrayObject.value("citynow").toObject();
      /*
-"city":"广州",
+                "city":"广州",
                 "AQI":"36",
                 "quality":"优",
                 "date":"2020-07-10 14:00"
