@@ -14,7 +14,7 @@ void MainWindow::ad_vedio()
 
     QString cmd = QString("mplayer -slave -quiet "
                           "-geometry 0:0 -zoom -x %1 -y %2 "
-                          "/zero/Manchester.mp4")
+                          "/zero/qttest.mp4")
             .arg(ui->ad_vediolabel->width())
             .arg(ui->ad_vediolabel->height());
     qDebug() << "cmd = " << cmd;
@@ -55,50 +55,37 @@ void MainWindow::read_data(QNetworkReply* reply)
 
     //
     QJsonObject object =  doc.object();
+    QString reason = object.value("reason").toString();
+    qDebug() << reason;
     QJsonObject resultObject = object.value("result").toObject();
-    QJsonObject todayObject = resultObject.value("today").toObject();
-    QString mtemperature = todayObject.value("temperature").toString();
-    QString mweather = todayObject.value("weather").toString();
-    QString mcity = todayObject.value("city").toString();
+//    QJsonObject todayObject = resultObject.value("today").toObject();
 
-
+    QString mcity = resultObject.value("city").toString();
+    qDebug() << mcity;
+    QJsonObject realtimeObject = resultObject.value("realtime").toObject();
+    QString mtemperature = realtimeObject.value("temperature").toString();
+    QString minfo = realtimeObject.value("info").toString();
+    qDebug() << minfo;
+    qDebug() << mtemperature;
     /*
 {
-    "resultcode":"200",
-    "reason":"successed!",
+    "reason":"查询成功!",
     "result":{
-        "sk":{
-            "temp":"30",
-            "wind_direction":"东南风",
-            "wind_strength":"3级",
-            "humidity":"63%",
-            "time":"21:03"
-        },
-        "today":{
-            "temperature":"28℃~35℃",
-            "weather":"多云转晴",
-            "weather_id":{
-                "fa":"01",
-                "fb":"00"
-            },
-            "wind":"持续无风向微风",
-            "week":"星期三",
-            "city":"广州",
-            "date_y":"2020年07月22日",
-            "dressing_index":"炎热",
-            "dressing_advice":"天气炎热，建议着短衫、短裙、短裤、薄型T恤衫等清凉夏季服装。",
-            "uv_index":"中等",
-            "comfort_index":"",
-            "wash_index":"较适宜",
-            "travel_index":"较适宜",
-            "exercise_index":"较适宜",
-            "drying_index":""
+        "city":"广州",
+        "realtime":{
+            "temperature":"29",
+            "humidity":"75",
+            "info":"多云",
+            "wid":"01",
+            "direct":"东南风",
+            "power":"2级",
+            "aqi":"15"
         }}
     */
 
 
     ui->address_label->setText(mcity);
-    ui->weather_label->setText(mweather);
+    ui->weather_label->setText(minfo);
     ui->tempreaturelabel->setText(mtemperature);
 }
 
@@ -151,9 +138,9 @@ void MainWindow::http_weather()
 
     connect(manager,&QNetworkAccessManager::finished,this,&MainWindow::read_data);
 
-    QUrl url("http://v.juhe.cn/weather/index?"
-             "cityname=%E5%B9%BF%E5%B7%9E&dtype=&format="
-             "&key=ca5fee35da9262336b26530ca0e76710");
+    QUrl url("http://apis.juhe.cn/simpleWeather/query?"
+             "city=%E5%B9%BF%E5%B7%9E"
+             "&key=6eaaa433d136ff59653d126c67270943");
     QNetworkRequest request(url);
     manager->get(request);
 }
@@ -168,7 +155,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ad_vedio();
 
     //显示时间
-    run_time();
+//    run_time();
 
 //    //创建线程池
 //    QThreadPool *manager = QThreadPool::globalInstance();
@@ -176,12 +163,20 @@ MainWindow::MainWindow(QWidget *parent) :
 //    MyClock* mc = new MyClock();
 //    //加入线程池并启动
 //    manager->start(mc);
+//    connect(mc,&MyClock::run,this,&MainWindow::show_time);
+
+
+    MyClock* mc = new MyClock();
+    mc->setObjectName("mc");
+    connect(mc,&MyClock::send,this,&MainWindow::show_time);
+    mc->start();
+
 
     //显示广告标语
     ad_text();
 
     // 天气API已连接成功
-//    http_weather();
+    http_weather();
     QImage img;
     img.load(":/new/prefix1/weather/sunny.png");
     QPixmap originalPixmap = QPixmap::fromImage(img);

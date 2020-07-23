@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
-#include <QtDebug>
+
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include <QProcess>
@@ -18,6 +18,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QImage>
+#include <QMutex>
 //完成对网络数据的请求
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -81,26 +82,28 @@ private:
     static int count;
 };
 
+static QMutex mutex;
+class MyClock:public  QThread
+{
+    Q_OBJECT
+public:
+    explicit MyClock(QWidget *parent = nullptr){}
+    ~MyClock(){}
 
-//class MyClock:public QRunnable,public QObject
-//{
-//    Q_OBJECT
-//public:
-//    explicit MyClock(QWidget *parent = nullptr){}
-//    ~MyClock(){}
+    void run() override
+    {
+        while(1)
+        {
+            mutex.lock();
+            QTime time_1 = QTime::currentTime();
+            qDebug() << time_1.toString("hh:mm:ss");
+            QThread::sleep(1);
+            emit send();
+            mutex.unlock();
+        }
+    }
 
-//    void run() override
-//    {
-//        while(1)
-//        {
-//            QTime time_1 = QTime::currentTime();
-//            qDebug() << time_1.toString("hh:mm:ss");
-//            QThread::sleep(1);
-//            emit send();
-//        }
-//    }
-
-//signals:
-//    void send();
-//};
+signals:
+    void send();
+};
 #endif // MAINWINDOW_H
