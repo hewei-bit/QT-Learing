@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "v4l2.h"
 #include <QTimer>
+
 #include <QPixmap>
 //#include <QtDebug>
 
@@ -22,8 +23,6 @@ public:
 private slots:
     void on_startBtn_clicked();
     void flushButff();
-
-
 
 
 
