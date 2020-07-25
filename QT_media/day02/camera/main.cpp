@@ -1,10 +1,10 @@
-#include "sreen_shot.h"
+#include "mainwindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    sreen_shot w;
+    MainWindow w;
     w.show();
 
     return a.exec();

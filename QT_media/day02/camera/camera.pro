@@ -1,14 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-07-21T20:21:42
+# Project created by QtCreator 2020-07-23T22:47:10
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = sreenshot
+TARGET = camera
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,13 +26,13 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        sreen_shot.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        sreen_shot.h
+        mainwindow.h
 
 FORMS += \
-        sreen_shot.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
