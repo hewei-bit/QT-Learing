@@ -14,37 +14,45 @@ void MainWindow::led_running()
         databuf[0] = 0; //关灯
         databuf[1] = 10;
         write(fd,databuf,sizeof(databuf));
+        ui->D10Btn->setStyleSheet("background-color: rgb(0, 255, 0)");
 qDebug() <<"D7";
         databuf[0] = 1; //开灯
         databuf[1] = 7;
         write(fd,databuf,sizeof(databuf));
+        ui->d7Btn->setStyleSheet("background-color: rgb(255, 0, 0)");
      }else if (isRunning == 1) {
          //D8
          databuf[0] = 0; //关灯
          databuf[1] = 7;
          write(fd,databuf,sizeof(databuf));
+         ui->d7Btn->setStyleSheet("background-color: rgb(0, 255, 0)");
 qDebug() <<"D8";
          databuf[0] = 1; //开灯
          databuf[1] = 8;
          write(fd,databuf,sizeof(databuf));
+         ui->D8Btn->setStyleSheet("background-color: rgb(255, 0, 0)");
      }else if (isRunning == 2) {
          //D9
          databuf[0] = 0; //关灯
          databuf[1] = 8;
          write(fd,databuf,sizeof(databuf));
+         ui->D8Btn->setStyleSheet("background-color: rgb(0, 255, 0)");
 
          databuf[0] = 1; //开灯
          databuf[1] = 9;
          write(fd,databuf,sizeof(databuf));
+         ui->D9Btn->setStyleSheet("background-color: rgb(255, 0, 0)");
      }else if (isRunning == 3) {
          //D10
          databuf[0] = 0; //关灯
          databuf[1] = 9;
          write(fd,databuf,sizeof(databuf));
+         ui->D9Btn->setStyleSheet("background-color: rgb(0, 255, 0)");
 
          databuf[0] = 1; //开灯
          databuf[1] = 10;
          write(fd,databuf,sizeof(databuf));
+         ui->D10Btn->setStyleSheet("background-color: rgb(255, 0, 0)");
      }
 
      isRunning++;
