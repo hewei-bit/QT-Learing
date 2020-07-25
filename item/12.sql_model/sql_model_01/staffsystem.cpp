@@ -76,7 +76,7 @@ void staffsystem::readdb()
     {
 
         qDebug() << "success select record";
-        //如果语句执行成功，要真正执行查询操作
+        //如果语句执行成功，要真正执行查'询操作
 
         for (int i = 0;sqlQuery.next();i++)
         { //按行来进行遍历
