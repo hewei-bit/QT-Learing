@@ -25,14 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        login.cpp \
         main.cpp \
         intelligent_community.cpp
 
 HEADERS += \
-        intelligent_community.h
+        intelligent_community.h \
+        login.h
 
 FORMS += \
-        intelligent_community.ui
+        intelligent_community.ui \
+        login.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
