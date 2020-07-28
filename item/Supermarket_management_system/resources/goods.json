@@ -32,7 +32,7 @@
             "cost": 2000,
             "name": "电脑",
             "price": 3000,
-            "quantity": 7,
+            "quantity": 5,
             "species": "电子产品",
             "unit": "台"
         },
@@ -41,7 +41,7 @@
             "cost": 1200,
             "name": "手机",
             "price": 1500,
-            "quantity": 5,
+            "quantity": 61,
             "species": "电子产品",
             "unit": "台"
         },
@@ -86,7 +86,7 @@
             "cost": 5,
             "name": "苹果",
             "price": 6,
-            "quantity": 106,
+            "quantity": 96,
             "species": "食物",
             "unit": "斤"
         },
@@ -113,7 +113,7 @@
             "cost": 5,
             "name": "香蕉",
             "price": 7,
-            "quantity": 998,
+            "quantity": 968,
             "species": "食物",
             "unit": "斤"
         },
