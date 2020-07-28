@@ -15,6 +15,9 @@ public:
     explicit Community_service(QWidget *parent = nullptr);
     ~Community_service();
 
+private slots:
+    void on_back_Btn_clicked();
+
 private:
     Ui::Community_service *ui;
 };

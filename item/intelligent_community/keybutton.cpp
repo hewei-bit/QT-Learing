@@ -36,17 +36,19 @@ void KeyButton::button_click()
        key = new QKeyEvent(QKeyEvent::KeyPress, ch,Qt::NoModifier, str);
     }else if(str == "Del")
     {
+        //定义一个事件，Key_Backspace撤消按钮
        key = new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Backspace,Qt::NoModifier);
 
     }else if(str == "Enter")
     {
        key = new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Return,Qt::NoModifier);
 
-    }else if(str.isEmpty())
+    }
+    else if(str.isEmpty())
     {
        key = new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Space,Qt::NoModifier," ");
     }
 
-    //发送事件
+    //通过postEvent将事件key发送出去
     QApplication::postEvent(QApplication::focusWidget(), key);
 }

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,19 +25,47 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        advertisement.cpp \
+        community_service.cpp \
+        keybutton.cpp \
+        leisure.cpp \
         login.cpp \
         main.cpp \
-        intelligent_community.cpp
+        intelligent_community.cpp \
+        mylabel.cpp \
+        news.cpp \
+        selfinfo.cpp \
+        softkey.cpp \
+        weatherinfo.cpp
 
 HEADERS += \
+        advertisement.h \
+        community_service.h \
         intelligent_community.h \
-        login.h
+        keybutton.h \
+        leisure.h \
+        login.h \
+        mylabel.h \
+        news.h \
+        selfinfo.h \
+        softkey.h \
+        weatherinfo.h
 
 FORMS += \
+        advertisement.ui \
+        community_service.ui \
         intelligent_community.ui \
-        login.ui
+        leisure.ui \
+        login.ui \
+        news.ui \
+        selfinfo.ui \
+        softkey.ui \
+        weatherinfo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res.qrc

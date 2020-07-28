@@ -15,6 +15,9 @@ public:
     explicit selfinfo(QWidget *parent = nullptr);
     ~selfinfo();
 
+private slots:
+    void on_back_Btn_clicked();
+
 private:
     Ui::selfinfo *ui;
 };

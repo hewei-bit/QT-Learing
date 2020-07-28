@@ -1,2 +1,15 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>qss/mystyle.qss</file>
+        <file>pic/market.png</file>
+        <file>pic/market-1.png</file>
+        <file>pic/school.png</file>
+        <file>pic/timg.jpg</file>
+        <file>weather/cloudy (2).png</file>
+        <file>weather/cloudy.png</file>
+        <file>weather/raining.png</file>
+        <file>weather/sunny.png</file>
+        <file>weather/sunny_rain.png</file>
+        <file>pic/manchester.jpg</file>
+    </qresource>
+</RCC>

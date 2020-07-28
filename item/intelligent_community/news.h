@@ -15,6 +15,9 @@ public:
     explicit news(QWidget *parent = nullptr);
     ~news();
 
+private slots:
+    void on_back_Btn_clicked();
+
 private:
     Ui::news *ui;
 };
