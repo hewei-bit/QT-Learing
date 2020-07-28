@@ -62,6 +62,7 @@ void MainWindow::read_data(QNetworkReply* reply)
 
     QString mcity = resultObject.value("city").toString();
     qDebug() << mcity;
+
     QJsonObject realtimeObject = resultObject.value("realtime").toObject();
     QString mtemperature = realtimeObject.value("temperature").toString();
     QString minfo = realtimeObject.value("info").toString();
@@ -177,6 +178,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // 天气API已连接成功
     http_weather();
+
     QImage img;
     img.load(":/new/prefix1/weather/sunny.png");
     QPixmap originalPixmap = QPixmap::fromImage(img);
