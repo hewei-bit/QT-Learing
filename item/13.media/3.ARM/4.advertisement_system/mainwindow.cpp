@@ -1,10 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-int MainWindow::count = 0;
+int runningTimer::count = 0;
 
 
-void MainWindow::ad_vedio()
+void runningTimer::ad_vedio()
 {
     if(ad_video_Process.state() == QProcess::Running)
     {
@@ -22,7 +22,7 @@ void MainWindow::ad_vedio()
     ad_video_Process.start(cmd);
 }
 
-void MainWindow::show_time()
+void runningTimer::show_time()
 {
     QTime time = QTime::currentTime();
     ui->time_label->setText(time.toString("hh:mm:ss"));
@@ -30,7 +30,7 @@ void MainWindow::show_time()
     ui->date_label->setText(date.toString("yyyy-MM-dd"));
 }
 
-void MainWindow::show_ad_text()
+void runningTimer::show_ad_text()
 {
 //    update();
 //    m_curIndex++;
@@ -47,7 +47,7 @@ void MainWindow::show_ad_text()
     count++;
 }
 
-void MainWindow::read_data(QNetworkReply* reply)
+void runningTimer::read_data(QNetworkReply* reply)
 {
     QByteArray array = reply->readAll();
     qDebug() << array;
@@ -89,32 +89,32 @@ void MainWindow::read_data(QNetworkReply* reply)
     ui->tempreaturelabel->setText(mtemperature);
 }
 
-QString MainWindow::showText() const
+QString runningTimer::showText() const
 {
     return m_showText;
 }
 
-void MainWindow::run_time()
+void runningTimer::run_time()
 {
     mtimer = new QTimer(this);
-    connect(mtimer,&QTimer::timeout,this,&MainWindow::show_time);
+    connect(mtimer,&QTimer::timeout,this,&runningTimer::show_time);
     mtimer->setInterval(1000);
     mtimer->start(1000);
 }
 
-void MainWindow::ad_text()
+void runningTimer::ad_text()
 {
     m_curIndex = 0;//当前文字下标值
     m_showText = tr("Welcome to the image processing software of Star Dragon Company");//显示的文字
     m_charWidth = fontMetrics().width("a");//每个字符的宽度
 
     mtimer = new QTimer(this);
-    connect(mtimer,&QTimer::timeout,this,&MainWindow::show_ad_text);
+    connect(mtimer,&QTimer::timeout,this,&runningTimer::show_ad_text);
     mtimer->setInterval(1000);
     mtimer->start(1000);
 }
 
-void MainWindow::paintEvent(QPaintEvent *)
+void runningTimer::paintEvent(QPaintEvent *)
 {
     QPen pen;
     pen.setColor(QColor(255,0,255));
@@ -132,11 +132,11 @@ void MainWindow::paintEvent(QPaintEvent *)
     painter.drawText(width() - m_charWidth*m_curIndex, 15, m_showText.left(m_curIndex));
 }
 
-void MainWindow::http_weather()
+void runningTimer::http_weather()
 {
     manager = new QNetworkAccessManager();
 
-    connect(manager,&QNetworkAccessManager::finished,this,&MainWindow::read_data);
+    connect(manager,&QNetworkAccessManager::finished,this,&runningTimer::read_data);
 
     QUrl url("http://apis.juhe.cn/simpleWeather/query?"
              "city=%E5%B9%BF%E5%B7%9E"
@@ -145,7 +145,7 @@ void MainWindow::http_weather()
     manager->get(request);
 }
 
-MainWindow::MainWindow(QWidget *parent) :
+runningTimer::runningTimer(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -168,7 +168,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     MyClock* mc = new MyClock();
     mc->setObjectName("mc");
-    connect(mc,&MyClock::send,this,&MainWindow::show_time);
+    connect(mc,&MyClock::send,this,&runningTimer::show_time);
     mc->start();
 
 
@@ -187,7 +187,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-MainWindow::~MainWindow()
+runningTimer::~runningTimer()
 {
     delete ui;
 }
