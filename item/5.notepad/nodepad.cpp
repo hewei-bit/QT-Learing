@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QTextCodec>
+
 Nodepad::Nodepad(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Nodepad)
