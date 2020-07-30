@@ -1,5 +1,7 @@
 #include "result_mainwindow.h"
 #include "ui_result_mainwindow.h"
+#include "character_calc_mainwindow.h"
+
 
 result_MainWindow::result_MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,4 +30,11 @@ void result_MainWindow::showevaluation(QString s)
 result_MainWindow::~result_MainWindow()
 {
     delete ui;
+}
+
+void result_MainWindow::on_pushButton_clicked()
+{
+    ((character_calc_MainWindow *)this->parentWidget())->show();
+
+    this->close();
 }

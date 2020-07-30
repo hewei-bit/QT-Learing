@@ -24,6 +24,9 @@ public slots:
     void showscore(QString s);
     void showevaluation(QString s);
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::result_MainWindow *ui;
 };

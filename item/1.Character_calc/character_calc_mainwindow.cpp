@@ -64,6 +64,8 @@ void character_calc_MainWindow::showresult()
     connect(rm,&result_MainWindow::sendevaluation,rm,&result_MainWindow::showevaluation);
     emit rm->sendevaluation(Qevalution);
 
+
+    ui->name->clear();
     this->hide();
 
 }
