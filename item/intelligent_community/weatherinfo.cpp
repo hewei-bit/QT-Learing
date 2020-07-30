@@ -7,19 +7,17 @@ WeatherInfo::WeatherInfo(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    Myclock *mc= new Myclock();
-    mc->setObjectName("mc");
+//    Myclock *mc= new Myclock();
+//    mc->setObjectName("mc");
 
-    connect(mc,&Myclock::send,this,&WeatherInfo::show_time);
-    mc->start();
+//    connect(mc,&Myclock::send,this,&WeatherInfo::show_time);
+//    mc->start();
 
+
+    this->setStyleSheet("background-color: rgba(100, 100, 100, 0);");
 
     // 天气API已连接成功
     http_weather();
-
-
-
-
 }
 
 WeatherInfo::~WeatherInfo()
@@ -78,19 +76,54 @@ void WeatherInfo::read_data(QNetworkReply* reply)
     ui->city_label->setText(mcity);
     ui->info_label->setText(minfo);
     ui->temper_label->setText(mtemperature);
-    ui->winddir_label->setText(winddirect);
-    ui->windpow_label->setText(windpower);
+//    ui->winddir_label->setText(winddirect);
+//    ui->windpow_label->setText(windpower);
     ui->humidity_label->setText(mhumidity);
 
+    if(minfo.contains("云",Qt::CaseSensitive))
+    {
+        QImage img ;
+        img.load(":/weather/cloudy (2).png");
+        QPixmap originmap = QPixmap::fromImage(img);
 
-    QImage img ;
-    img.load(":/weather/cloudy (2).png");
-    QPixmap originmap = QPixmap::fromImage(img);
+
+        ui->info_pic_label->setPixmap(originmap.scaled(ui->info_pic_label->size(),
+                                                       Qt::IgnoreAspectRatio,
+                                                       Qt::SmoothTransformation));
+    }
+    if(minfo.contains("雨",Qt::CaseSensitive))
+    {
+        QImage img ;
+        img.load(":/weather/raining.png");
+        QPixmap originmap = QPixmap::fromImage(img);
 
 
-    ui->info_pic_label->setPixmap(originmap.scaled(ui->info_pic_label->size(),
-                                                   Qt::IgnoreAspectRatio,
-                                                   Qt::SmoothTransformation));
+        ui->info_pic_label->setPixmap(originmap.scaled(ui->info_pic_label->size(),
+                                                       Qt::IgnoreAspectRatio,
+                                                       Qt::SmoothTransformation));
+    }
+    if(minfo.contains("阴",Qt::CaseSensitive))
+    {
+        QImage img ;
+        img.load(":/weather/cloudy.png");
+        QPixmap originmap = QPixmap::fromImage(img);
+
+
+        ui->info_pic_label->setPixmap(originmap.scaled(ui->info_pic_label->size(),
+                                                       Qt::IgnoreAspectRatio,
+                                                       Qt::SmoothTransformation));
+    }
+    if(minfo.contains("晴",Qt::CaseSensitive))
+    {
+        QImage img ;
+        img.load(":/weather/sunny.png");
+        QPixmap originmap = QPixmap::fromImage(img);
+
+
+        ui->info_pic_label->setPixmap(originmap.scaled(ui->info_pic_label->size(),
+                                                       Qt::IgnoreAspectRatio,
+                                                       Qt::SmoothTransformation));
+    }
 
 }
 
@@ -99,13 +132,13 @@ void WeatherInfo::run_time()
 
 }
 
-void WeatherInfo::show_time()
-{
-    QTime time = QTime::currentTime();
-    ui->time_label->setText(time.toString("hh:mm:ss"));
-    QDate date = QDate::currentDate();
-    ui->date_label->setText(date.toString("yyyy-MM-dd"));
-}
+//void WeatherInfo::show_time()
+//{
+//    QTime time = QTime::currentTime();
+//    ui->time_label->setText(time.toString("hh:mm:ss"));
+//    QDate date = QDate::currentDate();
+//    ui->date_label->setText(date.toString("yyyy-MM-dd"));
+//}
 
 void WeatherInfo::http_weather()
 {

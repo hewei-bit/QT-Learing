@@ -26,38 +26,76 @@ CONFIG += c++11
 
 SOURCES += \
         advertisement.cpp \
+        business_center.cpp \
+        caular.cpp \
+        character_calc_mainwindow.cpp \
         community_service.cpp \
+        edit_table_model.cpp \
+        for_business.cpp \
         keybutton.cpp \
         leisure.cpp \
         login.cpp \
         main.cpp \
         intelligent_community.cpp \
+        mange_business.cpp \
+        mange_owner.cpp \
         mylabel.cpp \
+        new_owner.cpp \
+        newowner.cpp \
         news.cpp \
+        nodepad.cpp \
+        result_mainwindow.cpp \
+        runningtime.cpp \
         selfinfo.cpp \
         softkey.cpp \
         weatherinfo.cpp
 
 HEADERS += \
         advertisement.h \
+        business_center.h \
+        caular.h \
+        character_calc_mainwindow.h \
         community_service.h \
+        connect_database.h \
+        countdata.h \
+        database_table.h \
+        edit_table_model.h \
+        for_business.h \
         intelligent_community.h \
         keybutton.h \
         leisure.h \
         login.h \
+        mange_business.h \
+        mange_owner.h \
         mylabel.h \
+        new_owner.h \
+        newowner.h \
         news.h \
+        nodepad.h \
+        result_mainwindow.h \
+        runningtime.h \
         selfinfo.h \
         softkey.h \
         weatherinfo.h
 
 FORMS += \
         advertisement.ui \
+        business_center.ui \
+        caular.ui \
+        character_calc_mainwindow.ui \
         community_service.ui \
+        for_business.ui \
         intelligent_community.ui \
         leisure.ui \
         login.ui \
+        mange_business.ui \
+        mange_owner.ui \
+        new_owner.ui \
+        newowner.ui \
         news.ui \
+        nodepad.ui \
+        result_mainwindow.ui \
+        runningtime.ui \
         selfinfo.ui \
         softkey.ui \
         weatherinfo.ui

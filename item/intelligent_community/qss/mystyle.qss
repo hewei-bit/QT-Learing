@@ -2,6 +2,11 @@ QWidget {
    background-color: beige;
 }
 
+#mainWindow
+{
+    border-image:url(:/pic/manchester.jpg);
+}
+
 QToolBar {
     background-color: beige;
 }

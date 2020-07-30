@@ -2,7 +2,20 @@
 #define NEWS_H
 
 #include <QMainWindow>
+//完成对网络数据的请求
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
+//JSON数据解析
+#include<QJsonArray>  //[]
+#include <QJsonDocument> //JSON文档 --- 将服务器数据转换成一个QJsonDocument
+#include <QJsonObject> //{}
+
+#include "QtDebug"
+
+#include <QStandardItem>
+#include <QStringListModel>
 namespace Ui {
 class news;
 }
@@ -15,11 +28,18 @@ public:
     explicit news(QWidget *parent = nullptr);
     ~news();
 
+    void read_news(QNetworkReply* reply);
+
 private slots:
     void on_back_Btn_clicked();
 
+    void http_news();
+
 private:
     Ui::news *ui;
+    QNetworkAccessManager *manager;
+    QStringListModel *Model;
+    QStandardItemModel *ItemModel;
 };
 
 #endif // NEWS_H

@@ -20,6 +20,12 @@ private slots:
 
     void on_notepad_Btn_clicked();
 
+    void on_calc_btn_clicked();
+
+    void on_stopwatch_Btn_clicked();
+
+    void on_game_Btn_clicked();
+
 private:
     Ui::leisure *ui;
 };

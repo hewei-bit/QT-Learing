@@ -73,8 +73,6 @@ void advertisement::ad_video()
     qDebug() << "cmd = " << cmd;
 
     ad_video_Process.start(cmd);
-
-
 }
 
 void advertisement::on_commandLinkButton_clicked()
@@ -83,7 +81,7 @@ void advertisement::on_commandLinkButton_clicked()
     ((login *)this->parentWidget())->show();
 
     ad_video_Process.kill();
-
+    timer->stop();
 
     this->close();
 }

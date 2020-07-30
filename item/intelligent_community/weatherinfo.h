@@ -48,7 +48,7 @@ public:
 
     void run_time();
 private slots:
-    void show_time();
+//    void show_time();
 
     void http_weather();
 
@@ -62,41 +62,30 @@ private:
 };
 
 
-static QMutex mutex;
-class Myclock:public QThread
-{
-    Q_OBJECT
-public:
-    explicit Myclock(QWidget *parent = nullptr){}
-    ~Myclock(){}
+//static QMutex mutex;
+//class Myclock:public QThread
+//{
+//    Q_OBJECT
+//public:
+//    explicit Myclock(QWidget *parent = nullptr){}
+//    ~Myclock(){}
 
-    void run() override
-    {
-        while(1)
-        {
-            mutex.lock();
-            QTime mtime = QTime::currentTime();
-            qDebug() << mtime.toString("hh:mm:ss");
-            QThread::sleep(1);
-            emit send();
+//    void run() override
+//    {
+//        while(1)
+//        {
+//            mutex.lock();
+//            QTime mtime = QTime::currentTime();
+//            qDebug() << mtime.toString("hh:mm:ss");
+//            QThread::sleep(1);
+//            emit send();
 
-            mutex.unlock();
-        }
-    }
-signals:
-    void send();
-};
-
-
-
-
-
-
-
-
-
-
-
+//            mutex.unlock();
+//        }
+//    }
+//signals:
+//    void send();
+//};
 
 
 #endif // WEATHERINFO_H
