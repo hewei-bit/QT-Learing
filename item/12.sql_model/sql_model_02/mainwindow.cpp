@@ -4,7 +4,7 @@
 
 
 
-bool MainWindow::opendatabase()
+bool runningTimer::opendatabase()
 {
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("../sql_model_02/company.db");
@@ -18,7 +18,7 @@ bool MainWindow::opendatabase()
     return ok;
 }
 
-void MainWindow::insertdata()
+void runningTimer::insertdata()
 {
     QSqlQuery query;
     //准备数据
@@ -49,7 +49,7 @@ void MainWindow::insertdata()
     database.close();  //关闭操作库
 }
 
-void MainWindow::iscreateDatabaseTable()
+void runningTimer::iscreateDatabaseTable()
 {
     file.setFileName("../createTable.txt");
     if(file.open(QIODevice::ReadWrite))
@@ -89,7 +89,7 @@ void MainWindow::iscreateDatabaseTable()
     }
 }
 
-MainWindow::MainWindow(QWidget *parent) :
+runningTimer::runningTimer(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -104,7 +104,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-MainWindow::~MainWindow()
+runningTimer::~runningTimer()
 {
     delete ui;
 }

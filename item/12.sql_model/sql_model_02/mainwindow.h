@@ -13,13 +13,13 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class runningTimer : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit runningTimer(QWidget *parent = nullptr);
+    ~runningTimer();
 
     bool opendatabase();
 
