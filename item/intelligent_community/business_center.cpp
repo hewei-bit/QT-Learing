@@ -19,23 +19,22 @@ business_center::~business_center()
 
 void business_center::on_owner_manage_Btn_clicked()
 {
-    mange_owner *mo = new mange_owner(this);
+    mange_owner *mo = new mange_owner();
     mo->show();
-    this->hide();
+    this->close();
 }
 
 void business_center::on_business_Btn_clicked()
 {
-    mange_business *mb = new mange_business(this);
+    mange_business *mb = new mange_business();
     mb->show();
-    this->hide();
+    this->close();
 }
 
 void business_center::on_back_Btn_clicked()
 {
     //显示登录界面
-    ((login *)this->parentWidget())->show();
-
-
+    login * lg = new login();
+    lg->show();
     this->close();
 }

@@ -310,6 +310,11 @@ void Caular::button_pr()
     ui->label_2->setText(QString::number(ret,100,2));
 }
 
+void Caular::getname(QString &name)
+{
+    mmmname = name;
+}
+
 
 
 
@@ -317,6 +322,12 @@ void Caular::button_pr()
 
 void Caular::on_back_clicked()
 {
-    ((leisure *)this->parentWidget())->show();
+    leisure * np = new leisure();
+
+    connect(this,&Caular::sendname,np,&leisure::getname);
+    emit sendname(mmmname);
+    disconnect(this,&Caular::sendname,np,&leisure::getname);
+
+    np->show();
     this->close();
 }

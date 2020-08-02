@@ -58,8 +58,17 @@ void for_business::on_beg_Btn_clicked()
 
 void for_business::on_back_Btn_clicked()
 {
-    ((community_service *)this->parentWidget())->show();
+
+    community_service * ic = new community_service();
+
+    connect(this,&for_business::sendname,ic,&community_service::getname);
+    emit sendname(mmmname);
+    disconnect(this,&for_business::sendname,ic,&community_service::getname);
+
+    ic->show();
+
     this->close();
+
 }
 
 void for_business::on_name_lineEdit_selectionChanged()

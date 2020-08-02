@@ -25,6 +25,11 @@ character_calc_MainWindow::~character_calc_MainWindow()
     delete ui;
 }
 
+void character_calc_MainWindow::getname(QString &name)
+{
+    mmmname = name;
+}
+
 void character_calc_MainWindow::showresult()
 {
     qDebug() << "------";
@@ -73,7 +78,13 @@ void character_calc_MainWindow::showresult()
 
 void character_calc_MainWindow::on_pushButton_clicked()
 {
-    ((leisure *)this->parentWidget())->show();
+    leisure * np = new leisure();
+
+    connect(this,&character_calc_MainWindow::sendname,np,&leisure::getname);
+    emit sendname(mmmname);
+    disconnect(this,&character_calc_MainWindow::sendname,np,&leisure::getname);
+
+    np->show();
     this->close();
 }
 

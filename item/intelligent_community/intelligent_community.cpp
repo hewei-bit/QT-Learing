@@ -7,8 +7,12 @@
 #include "community_service.h"
 #include "news.h"
 #include "leisure.h"
+#include "LED.h"
 
 #include "login.h"
+
+
+
 
 static QString myname="";
 
@@ -31,13 +35,17 @@ intelligent_community::intelligent_community(QWidget *parent) :
 //    ui->widget_2->show();
 
     ui->widget->setStyleSheet("background-color: rgba(250, 250, 250,0)");
+
     //显示时间
-    Myclock *mc= new Myclock();
-    mc->setObjectName("mc");
+//    Myclock *mc= new Myclock();
 
-    connect(mc,&Myclock::send,this,&intelligent_community::show_time);
-    mc->start();
+    connect(mtimer,&QTimer::timeout,this,&intelligent_community::show_time);
+    mtimer->setInterval(1000);
+    mtimer->start(1000);
 
+//    mc->setObjectName("mc");
+//    connect(mc,&Myclock::send,this,&intelligent_community::show_time);
+//    mc->start();
 
     // 天气API已连接成功
     http_weather();
@@ -50,17 +58,23 @@ intelligent_community::intelligent_community(QWidget *parent) :
 intelligent_community::~intelligent_community()
 {
     delete ui;
+    qDebug() << "intelligent_community::~intelligent_community()";
 }
 
-void intelligent_community::ad_video()
+void intelligent_community::exit_video()
 {
     if(in_video_Process.state() == QProcess::Running)
     {
         in_video_Process.kill();
         in_video_Process.waitForFinished();
     }
+}
+
+void intelligent_community::ad_video()
+{
+    exit_video();
     QString cmd = QString("mplayer -slave -quiet "
-                          " -geometry 0:0 -zoom -x %1 -y %2 "
+                          " -geometry 40:120 -zoom -x %1 -y %2 "
                           " -wid %3 "
                           " ./Manchester.mp4")
             .arg(ui->label_17->width())
@@ -225,45 +239,105 @@ void intelligent_community::read_data(QNetworkReply *reply)
     }
 }
 
+//打开报修服务
 void intelligent_community::on_server_Btn_clicked()
 {
-    community_service *coms = new community_service(this);
+    community_service *coms = new community_service();
+
     connect(this,&intelligent_community::sendname,coms,&community_service::getname);
     emit sendname(myname);
     disconnect(this,&intelligent_community::sendname,coms,&community_service::getname);
+//    disconnect(mc,&Myclock::send,this,&intelligent_community::show_time);
+    mtimer->stop();
+    delete mtimer;
+    exit_video();
+
     coms->show();
-    this->hide();
+    this->close();
 }
 
+//打开休闲娱乐
 void intelligent_community::on_leien_Btn_clicked()
 {
-    leisure *leien = new leisure(this);
+    leisure *leien = new leisure();
+
+    connect(this,&intelligent_community::sendname,leien,&leisure::getname);
+    emit sendname(myname);
+    disconnect(this,&intelligent_community::sendname,leien,&leisure::getname);
+//disconnect(mc,&Myclock::send,this,&intelligent_community::show_time);
+    mtimer->stop();
+    delete mtimer;
+    exit_video();
     leien->show();
-    this->hide();
+    this->close();
 }
 
+//
 void intelligent_community::on_selfinfo_Btn_clicked()
 {
-    selfinfo *sinfo = new selfinfo(this);
+    selfinfo *sinfo = new selfinfo();
+
     connect(this,&intelligent_community::sendname,sinfo,&selfinfo::getname);
     emit sendname(myname);
     disconnect(this,&intelligent_community::sendname,sinfo,&selfinfo::getname);
-
+//disconnect(mc,&Myclock::send,this,&intelligent_community::show_time);
+    mtimer->stop();
+    delete mtimer;
+    exit_video();
     sinfo->show();
-    this->hide();
+    this->close();
 }
 
+
+//打开新闻
 void intelligent_community::on_news_Btn_clicked()
 {
-    news *nn = new news (this);
+    news *nn = new news ();
+
+    connect(this,&intelligent_community::sendname,nn,&news::getname);
+    emit sendname(myname);
+    disconnect(this,&intelligent_community::sendname,nn,&news::getname);
+    mtimer->stop();
+    delete mtimer;
+    exit_video();
+
     nn->show();
-    this->hide();
+    this->close();
+}
+
+
+//打开监控
+void intelligent_community::on_video_Btn_clicked()
+{
+
+}
+
+
+//点灯
+void intelligent_community::on_light_Btn_clicked()
+{
+    LED *LL = new LED ();
+
+    connect(this,&intelligent_community::sendname,LL,&LED::getname);
+    emit sendname(myname);
+    disconnect(this,&intelligent_community::sendname,LL,&LED::getname);
+    mtimer->stop();
+    delete mtimer;
+    exit_video();
+
+    LL->show();
+    this->close();
 }
 
 void intelligent_community::on_back_Btn_clicked()
 {
-    ((login *)this->parentWidget())->show();
-    in_video_Process.kill();
+    login *lg = new login ();
+    lg->show();
+//    disconnect(mc,&Myclock::send,this,&intelligent_community::show_time);
+
+    mtimer->stop();
+    delete mtimer;
+    exit_video();
     this->close();
 }
 
@@ -312,8 +386,8 @@ void intelligent_community::http_weather()
 
 void intelligent_community::setusername(QString name)
 {
-    qDebug()<<name;
     myname = name;
-    qDebug() <<myname;
     ui->name_label->setText(QString("亲爱的 %1 ").arg(name));
 }
+
+

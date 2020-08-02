@@ -22,9 +22,11 @@ class selfinfo : public QMainWindow
 public:
     explicit selfinfo(QWidget *parent = nullptr);
     ~selfinfo();
+    void read_owner_data();
+
+signals:
+    void sendname(QString &name);
 public slots:
-
-
     void getname(QString &name);
 private slots:
     void on_back_Btn_clicked();

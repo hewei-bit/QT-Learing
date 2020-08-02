@@ -2,10 +2,9 @@
 #include "ui_community_service.h"
 #include "intelligent_community.h"
 
-#include "edit_table_model.h"
-#include "connect_database.h"
 
 #include "for_business.h"
+
 #include <QMessageBox>
 
 void community_service::open_table(QString &name)
@@ -88,19 +87,27 @@ community_service::~community_service()
 
 void community_service::on_pushButton_clicked()
 {
-    ((intelligent_community *)this->parentWidget())->show();
+    intelligent_community * ic = new intelligent_community();
+
+    connect(this,&community_service::sendname,ic,&intelligent_community::setusername);
+    emit sendname(mmmname);
+    disconnect(this,&community_service::sendname,ic,&intelligent_community::setusername);
+
+    ic->show();
+
     this->close();
 }
 
 void community_service::on_pushButton_2_clicked()
 {
-    for_business *fb = new for_business(this);
+    for_business *fb = new for_business();
+
     connect(this,&community_service::sendname,fb,&for_business::getname);
     emit sendname(mmmname);
     disconnect(this,&community_service::sendname,fb,&for_business::getname);
 
     fb->show();
-    this->hide();
+    this->close();
 
 }
 

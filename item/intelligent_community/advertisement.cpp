@@ -83,5 +83,7 @@ void advertisement::on_commandLinkButton_clicked()
     ad_video_Process.kill();
     timer->stop();
 
+    ad_sec = 3;
+
     this->close();
 }

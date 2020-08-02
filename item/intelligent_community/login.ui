@@ -91,10 +91,10 @@
    <widget class="SoftKey" name="widget_4" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>290</y>
-      <width>801</width>
-      <height>191</height>
+      <x>10</x>
+      <y>280</y>
+      <width>781</width>
+      <height>201</height>
      </rect>
     </property>
    </widget>

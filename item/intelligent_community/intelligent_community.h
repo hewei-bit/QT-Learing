@@ -29,6 +29,29 @@
 #include<QJsonArray>  //[]
 #include <QJsonDocument> //JSON文档 --- 将服务器数据转换成一个QJsonDocument
 #include <QJsonObject> //{}
+
+static QMutex mutex;
+class Myclock:public QThread
+{
+    Q_OBJECT
+public:
+    explicit Myclock(QWidget *parent = nullptr){}
+    ~Myclock(){}
+    void run() override
+    {
+        while(1)
+        {
+            mutex.lock();
+            QThread::sleep(1);
+            emit send();
+            mutex.unlock();
+        }
+    }
+signals:
+    void send();
+};
+
+
 namespace Ui {
 class intelligent_community;
 }
@@ -46,6 +69,8 @@ public:
     void run_time();
 
     void read_data(QNetworkReply* reply);
+
+    void exit_video();
 
 signals:
     void sendname(QString &name);
@@ -66,42 +91,23 @@ private slots:
 
     void http_weather();
 
+    void on_video_Btn_clicked();
+
+    void on_light_Btn_clicked();
+
 public slots:
     void setusername(QString name);
 
 
 private:
     Ui::intelligent_community *ui;
-
+//    Myclock *mc = new Myclock();
     QProcess in_video_Process;
-    QTimer *timer;
+    QTimer *mtimer = new QTimer(this);
     QNetworkAccessManager *manager;
 
 };
 
-static QMutex mutex;
-class Myclock:public QThread
-{
-    Q_OBJECT
-public:
-    explicit Myclock(QWidget *parent = nullptr){}
-    ~Myclock(){}
 
-    void run() override
-    {
-        while(1)
-        {
-            mutex.lock();
-//            QTime mtime = QTime::currentTime();
-//            qDebug() << mtime.toString("hh:mm:ss");
-            QThread::sleep(1);
-            emit send();
-
-            mutex.unlock();
-        }
-    }
-signals:
-    void send();
-};
 
 #endif // INTELLIGENT_COMMUNITY_H

@@ -21,15 +21,19 @@ private:
     void refresh(int i);
 
     //根据需求定义内部的字段相关的接口
-    bool setNotifier(int userId,const QString &userName);
+    bool setName(int userId,const QString &userName);
 
     bool setTele(int userId,const QString &usertele);
 
+    bool setAccount(int userId,const QString &useraccount);
+
+    bool setPassword(int userId,const QString &userpassword);
+
+    bool setbirth(int userId,const QString &userbirth);
+
     bool setAddress(int userId,const QString &useraddr);
 
-    bool setMisson(int userId,const QString &usermission);
-
-    bool setstate(int userId,const QString &userstate);
+    bool setRFID(int userId,const QString &userRFID);
 
 
 };

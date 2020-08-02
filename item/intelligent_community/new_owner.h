@@ -81,7 +81,10 @@ private slots:
 private:
     Ui::new_owner *ui;
 
-    QString dbname = "../intelligent_community/intell_com.db";
+//    QString dbname = "../intelligent_community/intell_com.db";
+
+    QString dbname = "./intell_com.db";
+
     QSqlDatabase database;
     QSqlQuery sqlQuery;
     QString sqlSelect;

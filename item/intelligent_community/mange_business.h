@@ -10,7 +10,7 @@
 #include <QApplication>
 #include <QTableView>
 #include <QSqlQueryModel>
-
+#include <QTableWidgetItem>
 namespace Ui {
 class mange_business;
 }
@@ -23,15 +23,25 @@ public:
     explicit mange_business(QWidget *parent = nullptr);
     ~mange_business();
 
+    void open_database();
+
     void open_table();
+signals:
+    void sendid(QString &id);
+
 
 private slots:
-    void on_back_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_back_2_clicked();
 
 private:
     Ui::mange_business *ui;
 
-    QString dbname = "../intelligent_community/intell_com.db";
+//    QString dbname = "../intelligent_community/intell_com.db";
+
+    QString dbname = "./intell_com.db";
     QSqlDatabase database;
     QSqlQuery sqlQuery;
     QString sqlSelect;

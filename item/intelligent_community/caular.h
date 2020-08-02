@@ -17,7 +17,8 @@ class Caular : public QMainWindow
 public:
     explicit Caular(QWidget *parent = nullptr);
     ~Caular();
-
+signals:
+    void sendname(QString &name);
 private:
     Ui::Caular *ui;
 public slots:
@@ -41,7 +42,7 @@ public slots:
     void button_enter();
     void button_pr();
 
-
+    void getname(QString &name);
 private:
     string  data;
     static int num;
@@ -49,6 +50,8 @@ private:
     static int pointflag;
     static int opnum;
     static int pecflag;
+    QString mmmname;
+
 public:
     void inputdata(string a)
     {

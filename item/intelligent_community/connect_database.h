@@ -9,7 +9,7 @@
 #include "database_table.h"
 
 
-bool isCreateTable = false;
+
 
 static bool createConnection(const QString& dbName)
 {
@@ -26,9 +26,12 @@ static bool createConnection(const QString& dbName)
 
 
 static void isCreateDatabaseTable(const QString & tableName,
-                                  const QString & name,const QString & password)
+                                  const QString & name,const QString & tele,
+                                  const QString & account,const QString & password,
+                                  const QString & birth,const QString & address,
+                                  const QString & RFID)
 {
-
+bool isCreateTable = false;
     QFile file;
     file.setFileName("./createTable.txt");
 
@@ -42,9 +45,16 @@ static void isCreateDatabaseTable(const QString & tableName,
     if(!isCreateTable)
     {
         QString sqlTable = QString("CREATE TABLE %1"
-                                   "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-                                      "%2 TEXT NOT NULL,"
-                                      "%3 TEXT NOT NULL)").arg(tableName).arg(name).arg(password);
+                                   "  id INTEGER PRIMARY KEY ASC AUTOINCREMENT NOT NULL,"
+                                   " %2 CHAR(50),"
+                                   " %3 CHAR(11),"
+                                   " %4 CHAR(20) NOT NULL UNIQUE,"
+                                   " %5 CHAR(20) NOT NULL,"
+                                   " %6 DATE(20) DEFAULT '2020-07-29',"
+                                   " %7 CHAR(100),"
+                                   " %8 CHAR(100) UNIQUE")
+                .arg(tableName).arg(name).arg(tele)
+                .arg(account).arg(password).arg(birth).arg(address).arg(RFID);
         qDebug()<<sqlTable;
         QSqlQuery query;
         if(!query.exec(sqlTable))

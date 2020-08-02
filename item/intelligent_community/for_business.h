@@ -23,7 +23,9 @@ class for_business : public QMainWindow
 public:
     explicit for_business(QWidget *parent = nullptr);
     ~for_business();
-
+signals:
+    void sendname(QString &name);
+public slots:
     void getname(QString &name);
 private slots:
     void on_beg_Btn_clicked();

@@ -16,7 +16,10 @@ public:
     explicit character_calc_MainWindow(QWidget *parent = nullptr);
     ~character_calc_MainWindow();
 
-
+signals:
+    void sendname(QString &name);
+public slots:
+    void getname(QString &name);
 
 public slots:
     void showresult();
@@ -31,6 +34,7 @@ private slots:
 
 private:
     Ui::character_calc_MainWindow *ui;
+    QString mmmname;
 };
 
 #endif // CHARACTER_CALC_MAINWINDOW_H

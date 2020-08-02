@@ -29,6 +29,10 @@ public:
     ~news();
 
     void read_news(QNetworkReply* reply);
+signals:
+    void sendname(QString &name);
+public slots:
+    void getname(QString &name);
 
 private slots:
     void on_back_Btn_clicked();
@@ -40,6 +44,8 @@ private:
     QNetworkAccessManager *manager;
     QStringListModel *Model;
     QStandardItemModel *ItemModel;
+
+    QString mmmname;
 };
 
 #endif // NEWS_H

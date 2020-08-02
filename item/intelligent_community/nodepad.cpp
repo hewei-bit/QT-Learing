@@ -20,25 +20,32 @@ Nodepad::Nodepad(QWidget *parent) :
     ui->setupUi(this);
     ui->showfile->setReadOnly(true);
     this->setWindowTitle("记事本");
-//    ui->widget->hide();
+    ui->widget->hide();
 }
 
 Nodepad::~Nodepad()
 {
     delete ui;
+    qDebug() << "Nodepad::~Nodepad()";
 }
 
+void Nodepad::getname(QString &name)
+{
+    mmmname = name;
+}
 
 void Nodepad::on_openpb_clicked()
 {
     QTextCodec *codec = QTextCodec::codecForName("GBK");
     QString name=QFileDialog::getOpenFileName();
+    qDebug() << name;
     QFile f(name);
     if(!f.open(QIODevice::ReadOnly|QIODevice::Text))
         return;
     QString text=codec->toUnicode(f.readAll());
     ui->showfile->append(text);
     f.close();
+    qDebug() << "ui->showfile->append(text);";
 }
 
 void Nodepad::on_editpb_clicked()
@@ -52,18 +59,18 @@ void Nodepad::on_editpb_clicked()
         {
             ui->showfile->setReadOnly(false);
             ui->editpb->setText("非编辑模式");
-//            ui->widget->show();
+            ui->widget->show();
         }
         else
         {
-         return ;
+            return ;
         }
     }
     else
     {
     ui->showfile->setReadOnly(true);
     ui->editpb->setText("编辑模式");
-//    ui->widget->hide();
+    ui->widget->hide();
     }
 }
 
@@ -107,7 +114,7 @@ void Nodepad::on_setfont_clicked()
     QFont font=QFontDialog::getFont(&ok,this);
     if(ok)
     {
-      ui->showfile->setFont(font);
+        ui->showfile->setFont(font);
     }
 }
 
@@ -122,6 +129,12 @@ void Nodepad::on_setbgcolorpb_clicked()
 
 void Nodepad::on_back_btn_clicked()
 {
-    ((leisure *)this->parentWidget())->show();
+    leisure * np = new leisure();
+
+    connect(this,&Nodepad::sendname,np,&leisure::getname);
+    emit sendname(mmmname);
+    disconnect(this,&Nodepad::sendname,np,&leisure::getname);
+
+    np->show();
     this->close();
 }

@@ -15,6 +15,12 @@ public:
     explicit Nodepad(QWidget *parent = nullptr);
     ~Nodepad();
 
+signals:
+    void sendname(QString &name);
+public slots:
+    void getname(QString &name);
+
+
 private slots:
 
 
@@ -36,6 +42,8 @@ private slots:
 
 private:
     Ui::Nodepad *ui;
+
+    QString mmmname;
 };
 
 #endif // NODEPAD_H

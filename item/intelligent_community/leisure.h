@@ -14,6 +14,11 @@ class leisure : public QMainWindow
 public:
     explicit leisure(QWidget *parent = nullptr);
     ~leisure();
+signals:
+    void sendname(QString &name);
+public slots:
+    void getname(QString &name);
+
 
 private slots:
     void on_back_btn_clicked();
@@ -28,6 +33,8 @@ private slots:
 
 private:
     Ui::leisure *ui;
+
+    QString mmmname;
 };
 
 #endif // LEISURE_H

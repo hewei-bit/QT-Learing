@@ -1,8 +1,6 @@
 #include "runningtime.h"
 #include "ui_runningtime.h"
-
 #include "leisure.h"
-
 int runningTimer::num = 0;
 
 runningTimer::runningTimer(QWidget *parent) :
@@ -22,6 +20,11 @@ runningTimer::~runningTimer()
     delete ui;
 }
 
+void runningTimer::getname(QString &name)
+{
+    mmmname = name;
+}
+
 void runningTimer::on_start_Btn_clicked()
 {
     mTimer->start();
@@ -30,11 +33,11 @@ void runningTimer::on_start_Btn_clicked()
 
 void runningTimer::on_reset_Btn_clicked()
 {
-mTimer->stop();
-num=0;
-QTime t(0,0,0);
-t = t.addMSecs(num);
-ui->show_label->setText(t.toString("hh:mm:ss:zzz"));
+    mTimer->stop();
+    num=0;
+    QTime t(0,0,0);
+    t = t.addMSecs(num);
+    ui->show_label->setText(t.toString("hh:mm:ss:zzz"));
 
 }
 
@@ -56,8 +59,19 @@ void runningTimer::show_sec()
     ui->show_label->setText(t.toString("hh:mm:ss:zzz"));
 }
 
-void runningTimer::on_pushButton_clicked()
+void runningTimer::on_back_Btn_clicked()
 {
-    ((leisure *)this->parentWidget())->show();
+    leisure * np = new leisure();
+
+    connect(this,&runningTimer::sendname,np,&leisure::getname);
+    emit sendname(mmmname);
+    disconnect(this,&runningTimer::sendname,np,&leisure::getname);
+
+    np->show();
     this->close();
+}
+
+void runningTimer::on_clear_Btn_clicked()
+{
+    ui->textBrowser->clear();
 }

@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        LED.cpp \
         advertisement.cpp \
         business_center.cpp \
         caular.cpp \
@@ -41,7 +42,6 @@ SOURCES += \
         mange_owner.cpp \
         mylabel.cpp \
         new_owner.cpp \
-        newowner.cpp \
         news.cpp \
         nodepad.cpp \
         result_mainwindow.cpp \
@@ -51,6 +51,7 @@ SOURCES += \
         weatherinfo.cpp
 
 HEADERS += \
+        LED.h \
         advertisement.h \
         business_center.h \
         caular.h \
@@ -69,7 +70,6 @@ HEADERS += \
         mange_owner.h \
         mylabel.h \
         new_owner.h \
-        newowner.h \
         news.h \
         nodepad.h \
         result_mainwindow.h \
@@ -79,6 +79,7 @@ HEADERS += \
         weatherinfo.h
 
 FORMS += \
+        LED.ui \
         advertisement.ui \
         business_center.ui \
         caular.ui \
@@ -91,7 +92,6 @@ FORMS += \
         mange_business.ui \
         mange_owner.ui \
         new_owner.ui \
-        newowner.ui \
         news.ui \
         nodepad.ui \
         result_mainwindow.ui \

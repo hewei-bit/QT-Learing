@@ -47,6 +47,7 @@ login::login(QWidget *parent) :
 login::~login()
 {
     delete ui;
+    qDebug() << "login::~login()";
 }
 
 void login::open_database()
@@ -130,13 +131,13 @@ void login::on_owner_Btn_clicked()
             //设置文本框的大小
 //            QMessageBox::information(this,QString(" %1 成功").arg(username),"success");
             //跳转
-            intelligent_community * intc = new intelligent_community(this);
+            intelligent_community * intc = new intelligent_community();
             connect(this,&login::send,intc,&intelligent_community::setusername);
             emit send(username);
-
+            disconnect(this,&login::send,intc,&intelligent_community::setusername);
+//            database.close();
             intc->show();
-
-            this->hide();
+            this->close();
         }
         else
         {
@@ -245,10 +246,10 @@ void login::on_property_Btn_clicked()
             //设置文本框的大小
 //            QMessageBox::information(this,QString(" %1 成功").arg("管理员"),"success");
             //跳转
-            business_center * busi = new business_center(this);
+            business_center * busi = new business_center();
+//           database.close();
             busi->show();
-
-            this->hide();
+            this->close();
         }
         else
         {

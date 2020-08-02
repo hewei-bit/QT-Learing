@@ -77,9 +77,21 @@ void news::read_news(QNetworkReply *reply)
 
 }
 
+void news::getname(QString &name)
+{
+    mmmname = name;
+}
+
 void news::on_back_Btn_clicked()
 {
-    ((intelligent_community *)this->parentWidget())->show();
+    intelligent_community * ic = new intelligent_community();
+
+    connect(this,&news::sendname,ic,&intelligent_community::setusername);
+    emit sendname(mmmname);
+    disconnect(this,&news::sendname,ic,&intelligent_community::setusername);
+
+    ic->show();
+
     this->close();
 }
 
