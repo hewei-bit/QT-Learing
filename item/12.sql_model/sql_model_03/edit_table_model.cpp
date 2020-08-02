@@ -37,9 +37,6 @@ bool edit_table_model::setData(const QModelIndex &index, const QVariant &value, 
 
     return  ok;
 
-
-
-
 }
 
 Qt::ItemFlags edit_table_model::flags(const QModelIndex &index) const
@@ -59,16 +56,10 @@ Qt::ItemFlags edit_table_model::flags(const QModelIndex &index) const
 void edit_table_model::refresh(int i)
 {
     setQuery("select * from user");
-//    if(i == 1)
-//    {
-        setHeaderData(1,Qt::Horizontal,QObject::tr("Name"));
-//    }
 
-//    if(i == 2)
-//    {
-         setHeaderData(2,Qt::Horizontal,QObject::tr("password"));
-//    }
+    setHeaderData(1,Qt::Horizontal,QObject::tr("Name"));
 
+    setHeaderData(2,Qt::Horizontal,QObject::tr("password"));
 }
 
 bool edit_table_model::setUserName(int userId, const QString &userName)

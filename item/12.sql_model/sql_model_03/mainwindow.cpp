@@ -1,14 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-runningTimer::runningTimer(QWidget *parent) :
+running_Timer::running_Timer(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 }
 
-runningTimer::~runningTimer()
+running_Timer::~running_Timer()
 {
     delete ui;
 }

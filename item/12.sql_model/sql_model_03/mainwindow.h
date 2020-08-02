@@ -7,13 +7,13 @@ namespace Ui {
 class MainWindow;
 }
 
-class runningTimer : public QMainWindow
+class running_Timer : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit runningTimer(QWidget *parent = nullptr);
-    ~runningTimer();
+    explicit running_Timer(QWidget *parent = nullptr);
+    ~running_Timer();
 
 private:
     Ui::MainWindow *ui;

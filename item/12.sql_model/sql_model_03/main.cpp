@@ -3,10 +3,8 @@
 #include <QTableView>
 
 #include "connect_database.h"
+
 #include "edit_table_model.h"
-
-
-
 
 QTableView* createView(QSqlQueryModel* model,const QString& title = "")
 {
@@ -37,12 +35,12 @@ int main(int argc, char *argv[])
 //    w.show();
 
     //打开数据库
-  if(!createConnection("staffDB.db"))
-  {
+    if(!createConnection("staffDB.db"))
+    {
       return  1;
-  }
-   //创建数据库表
-  isCreateDatabaseTable("user","name","password");
+    }
+    //创建数据库表
+    isCreateDatabaseTable("user","name","password");
 
     edit_table_model editmodel;
 
