@@ -1,10 +1,10 @@
-#include "mainwindow.h"
+#include "LED.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    LED w;
     w.show();
 
     return a.exec();
